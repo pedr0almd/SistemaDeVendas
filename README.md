@@ -16,11 +16,13 @@ Aplicação simples para o gerenciamento de vendas, com cadastro de clientes, pr
 - Integração com banco de dados usando JDBC (✔️)
 - Uso de procedures no MySQL para otimização (✔️)
 
+
 ## 🧑‍💻 Tecnologias Utilizadas
   - Java
   - MySql
   - Arquitetura MVC
   - NetBeans IDE
+
 
 ## 🚀 Como executar o projeto?
 
@@ -32,6 +34,7 @@ Aplicação simples para o gerenciamento de vendas, com cadastro de clientes, pr
   3. Configure o banco e as tabelas conforme o script (disponivel em /sql/estrutura.sql)
   4. Atualize os dados de conexão no arquivo de configuração (ConexaoMySql.java)
   5. Execute alguma tela e teste as funcionalidades
+
 
   ## Autores
   
