@@ -1,0 +1,15 @@
+Pck_View\TelaCliente$8.class
+Pck_Control\ClienteControl.class
+Pck_Model\PedidoModel.class
+Pck_DAO\ItemDAO.class
+Pck_View\TelaCliente$7.class
+Pck_Control\PedidoControl.class
+Pck_Control\ItemControl.class
+Pck_Model\ClienteModel.class
+Pck_View\TelaCliente$9.class
+Pck_Model\ItemModel.class
+com\mycompany\prj_sistemadevendas\Prj_SistemaDeVendas.class
+Pck_DAO\PedidoDAO.class
+Pck_DAO\ProdutoDAO.class
+Pck_DAO\ClienteDAO.class
+Pck_Test\TestDAO.class
