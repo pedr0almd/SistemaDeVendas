@@ -26,7 +26,7 @@ Aplicação simples para o gerenciamento de vendas, com cadastro de clientes, pr
 
 ## 🚀 Como executar o projeto?
 
-1. Abra a pasta desejada pelo cmd com
+1. Abra a pasta desejada pelo cmd com:
    ```bash
    cd C:\caminho\para\minha\pasta
    
