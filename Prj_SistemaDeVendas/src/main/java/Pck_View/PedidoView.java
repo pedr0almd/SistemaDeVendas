@@ -36,8 +36,8 @@ public class PedidoView extends javax.swing.JFrame {
         tfCodigoItem = new javax.swing.JTextField();
         lblQuantidade = new javax.swing.JLabel();
         tfQuantidade = new javax.swing.JTextField();
-        lblDescricao = new javax.swing.JLabel();
-        tfDescricao = new javax.swing.JTextField();
+        lblProduto = new javax.swing.JLabel();
+        tfProduto = new javax.swing.JTextField();
         lblValorUnitario = new javax.swing.JLabel();
         tfValorUnitario = new javax.swing.JTextField();
         lblValorItem = new javax.swing.JLabel();
@@ -49,12 +49,12 @@ public class PedidoView extends javax.swing.JFrame {
         btnConcluirVenda = new javax.swing.JButton();
         btnCancelar = new javax.swing.JToggleButton();
         tfPedido1 = new javax.swing.JLabel();
-        lblQuantidade1 = new javax.swing.JLabel();
-        lblQuantidade2 = new javax.swing.JLabel();
-        lblQuantidade3 = new javax.swing.JLabel();
-        lblQuantidade4 = new javax.swing.JLabel();
-        lblQuantidade5 = new javax.swing.JLabel();
-        lblQuantidade6 = new javax.swing.JLabel();
+        lblItemTabela = new javax.swing.JLabel();
+        lblProdutoTabela = new javax.swing.JLabel();
+        lblQuantidadeTabela = new javax.swing.JLabel();
+        lblValorTotalTabela = new javax.swing.JLabel();
+        lblCodigoTabela = new javax.swing.JLabel();
+        lblSubtotalTabela = new javax.swing.JLabel();
         btnInserirCliente = new javax.swing.JButton();
 
         jCheckBoxMenuItem1.setSelected(true);
@@ -78,6 +78,7 @@ public class PedidoView extends javax.swing.JFrame {
         lblCodigoItem.setForeground(new java.awt.Color(255, 255, 255));
         lblCodigoItem.setText("Código do item");
 
+        tfCodigoItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfCodigoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCodigoItemActionPerformed(evt);
@@ -88,14 +89,14 @@ public class PedidoView extends javax.swing.JFrame {
         lblQuantidade.setForeground(new java.awt.Color(255, 255, 255));
         lblQuantidade.setText("Quantidade (UN)");
 
-        lblDescricao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblDescricao.setForeground(new java.awt.Color(255, 255, 255));
-        lblDescricao.setText("Descrição");
+        lblProduto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblProduto.setForeground(new java.awt.Color(255, 255, 255));
+        lblProduto.setText("Produto");
 
-        tfDescricao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfDescricao.addActionListener(new java.awt.event.ActionListener() {
+        tfProduto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDescricaoActionPerformed(evt);
+                tfProdutoActionPerformed(evt);
             }
         });
 
@@ -156,8 +157,6 @@ public class PedidoView extends javax.swing.JFrame {
         // Corrigir fundo da área "vazia" da tabela
         scrollTblPedido.getViewport().setBackground(Color.WHITE);
 
-        tblPedido.setBackground(new java.awt.Color(40, 42, 53));
-        tblPedido.setForeground(new java.awt.Color(255, 255, 255));
         tblPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
             new String [] {
@@ -171,7 +170,7 @@ public class PedidoView extends javax.swing.JFrame {
         tblPedido.setShowGrid(false);
         tblPedido.setIntercellSpacing(new Dimension(0, 0));
         tblPedido.setSelectionBackground(new Color(0x28, 0x2A, 0x35));
-        tblPedido.setSelectionForeground(Color.WHITE);
+        tblPedido.setSelectionForeground(Color.BLACK);
 
         tblPedido.setTableHeader(null);
         tblPedido.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -219,29 +218,29 @@ public class PedidoView extends javax.swing.JFrame {
         tfPedido1.setText("Pedido");
         tfPedido1.setToolTipText("");
 
-        lblQuantidade1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblQuantidade1.setForeground(new java.awt.Color(255, 255, 255));
-        lblQuantidade1.setText("Item");
+        lblItemTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblItemTabela.setForeground(new java.awt.Color(255, 255, 255));
+        lblItemTabela.setText("Item");
 
-        lblQuantidade2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblQuantidade2.setForeground(new java.awt.Color(255, 255, 255));
-        lblQuantidade2.setText("Produto");
+        lblProdutoTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblProdutoTabela.setForeground(new java.awt.Color(255, 255, 255));
+        lblProdutoTabela.setText("Produto");
 
-        lblQuantidade3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblQuantidade3.setForeground(new java.awt.Color(255, 255, 255));
-        lblQuantidade3.setText("Quantidade");
+        lblQuantidadeTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblQuantidadeTabela.setForeground(new java.awt.Color(255, 255, 255));
+        lblQuantidadeTabela.setText("Quantidade");
 
-        lblQuantidade4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblQuantidade4.setForeground(new java.awt.Color(255, 255, 255));
-        lblQuantidade4.setText("Valor Total");
+        lblValorTotalTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblValorTotalTabela.setForeground(new java.awt.Color(255, 255, 255));
+        lblValorTotalTabela.setText("Valor Total");
 
-        lblQuantidade5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblQuantidade5.setForeground(new java.awt.Color(255, 255, 255));
-        lblQuantidade5.setText("Código");
+        lblCodigoTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCodigoTabela.setForeground(new java.awt.Color(255, 255, 255));
+        lblCodigoTabela.setText("Código");
 
-        lblQuantidade6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblQuantidade6.setForeground(new java.awt.Color(255, 255, 255));
-        lblQuantidade6.setText("Subtotal");
+        lblSubtotalTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSubtotalTabela.setForeground(new java.awt.Color(255, 255, 255));
+        lblSubtotalTabela.setText("Subtotal");
 
         btnInserirCliente.setBackground(new java.awt.Color(40, 42, 53));
         btnInserirCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -271,58 +270,53 @@ public class PedidoView extends javax.swing.JFrame {
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                                 .addGap(62, 62, 62)
-                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblCodigoItem)
+                                            .addComponent(tfCodigoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblValorUnitario)
+                                            .addComponent(tfValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(23, 23, 23)
+                                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblValorItem)))
+                                    .addComponent(tfProduto)
                                     .addComponent(tfPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblDescricao)
+                                    .addComponent(lblProduto)
                                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
+                                        .addGap(13, 13, 13)
                                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(btnConsultarValor)
                                             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(tfCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(lblCodigoProduto)))
+                                                .addComponent(lblCodigoProduto)
+                                                .addComponent(tfCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(12, 12, 12)
                                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnInserirItem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lblQuantidade)
-                                                    .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                    .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(tfDescricao, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBackgroundLayout.createSequentialGroup()
-                                            .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblCodigoItem)
-                                                .addComponent(tfCodigoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblValorUnitario)
-                                                .addComponent(tfValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(12, 12, 12)
-                                            .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblValorItem)
-                                                .addComponent(tfValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(btnInserirItem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblQuantidade)
+                                            .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                .addGap(33, 33, 33)
+                                .addGap(34, 34, 34)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnConcluirVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                .addComponent(lblQuantidade1)
+                                .addComponent(lblItemTabela)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblQuantidade5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblQuantidade2)
+                                .addComponent(lblCodigoTabela)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblQuantidade3)
+                                .addComponent(lblProdutoTabela)
+                                .addGap(12, 12, 12)
+                                .addComponent(lblQuantidadeTabela)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblQuantidade6)
+                                .addComponent(lblSubtotalTabela)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblQuantidade4))
+                                .addComponent(lblValorTotalTabela))
                             .addComponent(scrollTblPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addGap(43, 43, 43))
         );
@@ -334,13 +328,15 @@ public class PedidoView extends javax.swing.JFrame {
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                         .addComponent(tfPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73)
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblQuantidade)
-                            .addComponent(lblCodigoProduto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addComponent(lblQuantidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addComponent(lblCodigoProduto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnConsultarValor)
@@ -348,9 +344,9 @@ public class PedidoView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tfPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
-                        .addComponent(lblDescricao)
+                        .addComponent(lblProduto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblValorItem)
@@ -361,25 +357,30 @@ public class PedidoView extends javax.swing.JFrame {
                             .addComponent(tfValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfCodigoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(92, 92, 92)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16))
+                        .addGap(146, 146, 146))
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblQuantidade1)
-                            .addComponent(lblQuantidade2)
-                            .addComponent(lblQuantidade3)
-                            .addComponent(lblQuantidade4)
-                            .addComponent(lblQuantidade5)
-                            .addComponent(lblQuantidade6))
+                            .addComponent(lblItemTabela)
+                            .addComponent(lblProdutoTabela)
+                            .addComponent(lblQuantidadeTabela)
+                            .addComponent(lblValorTotalTabela)
+                            .addComponent(lblCodigoTabela)
+                            .addComponent(lblSubtotalTabela))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrollTblPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnInserirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(btnConcluirVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnConcluirVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(26, Short.MAX_VALUE))))
         );
+
+        tfCodigoItem.setEditable(false);
+        tfProduto.setEditable(false);
+        tfValorUnitario.setEditable(false);
+        tfValorItem.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -416,7 +417,7 @@ public class PedidoView extends javax.swing.JFrame {
             ProdutoModel produto = produtoDAO.buscarProdutoPorCodigo(codigoProduto);
 
             if (produto != null) {
-                tfDescricao.setText(produto.getA03_descricao());
+                tfProduto.setText(produto.getA03_descricao());
                 tfValorUnitario.setText(String.valueOf(produto.getA03_valorUnitario()));
 
                 double valorItem = produto.getA03_valorUnitario() * quantidade;
@@ -429,7 +430,7 @@ public class PedidoView extends javax.swing.JFrame {
                 model.addRow(new Object[]{
                     tfCodigoItem.getText(),
                     tfCodigoProduto.getText(),
-                    tfDescricao.getText(),
+                    tfProduto.getText(),
                     tfQuantidade.getText(),
                     tfValorUnitario.getText(),
                     tfValorItem.getText()
@@ -469,9 +470,9 @@ public class PedidoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfValorUnitarioActionPerformed
 
-    private void tfDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDescricaoActionPerformed
+    private void tfProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfProdutoActionPerformed
+       tfProduto.setEditable(false);
+    }//GEN-LAST:event_tfProdutoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
@@ -545,24 +546,24 @@ public class PedidoView extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel lblCodigoItem;
     private javax.swing.JLabel lblCodigoProduto;
-    private javax.swing.JLabel lblDescricao;
+    private javax.swing.JLabel lblCodigoTabela;
+    private javax.swing.JLabel lblItemTabela;
+    private javax.swing.JLabel lblProduto;
+    private javax.swing.JLabel lblProdutoTabela;
     private javax.swing.JLabel lblQuantidade;
-    private javax.swing.JLabel lblQuantidade1;
-    private javax.swing.JLabel lblQuantidade2;
-    private javax.swing.JLabel lblQuantidade3;
-    private javax.swing.JLabel lblQuantidade4;
-    private javax.swing.JLabel lblQuantidade5;
-    private javax.swing.JLabel lblQuantidade6;
+    private javax.swing.JLabel lblQuantidadeTabela;
+    private javax.swing.JLabel lblSubtotalTabela;
     private javax.swing.JLabel lblValorItem;
+    private javax.swing.JLabel lblValorTotalTabela;
     private javax.swing.JLabel lblValorUnitario;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JScrollPane scrollTblPedido;
     private javax.swing.JTable tblPedido;
     private javax.swing.JTextField tfCodigoItem;
     private javax.swing.JTextField tfCodigoProduto;
-    private javax.swing.JTextField tfDescricao;
     private javax.swing.JLabel tfPedido;
     private javax.swing.JLabel tfPedido1;
+    private javax.swing.JTextField tfProduto;
     private javax.swing.JTextField tfQuantidade;
     private javax.swing.JTextField tfValorItem;
     private javax.swing.JTextField tfValorUnitario;

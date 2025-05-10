@@ -92,31 +92,31 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                  <Component id="btnIniciarVenda" min="-2" pref="311" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
+                  <Component id="btnIniciarVenda" min="-2" pref="338" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnClientes" max="32767" attributes="0"/>
-                      <Component id="btnProdutos" pref="380" max="32767" attributes="0"/>
+                      <Component id="btnProdutos" pref="428" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="82" max="32767" attributes="0"/>
+                  <EmptySpace pref="178" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="53" max="32767" attributes="0"/>
+                  <EmptySpace pref="68" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnClientes" min="-2" pref="196" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnClientes" min="-2" pref="243" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnProdutos" min="-2" pref="186" max="-2" attributes="0"/>
+                          <Component id="btnProdutos" min="-2" pref="225" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="btnIniciarVenda" min="-2" pref="423" max="-2" attributes="0"/>
+                      <Component id="btnIniciarVenda" min="-2" pref="513" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

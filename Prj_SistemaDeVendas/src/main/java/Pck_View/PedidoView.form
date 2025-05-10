@@ -61,78 +61,69 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnInserirCliente" min="-2" pref="129" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblCodigoItem" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfCodigoItem" min="-2" pref="146" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblValorUnitario" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfValorUnitario" min="-2" pref="121" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tfValorItem" min="-2" pref="122" max="-2" attributes="0"/>
+                                              <Component id="lblValorItem" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="tfProduto" alignment="0" max="32767" attributes="0"/>
                                       <Component id="tfPedido1" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
                                       <Component id="tfPedido" min="-2" pref="208" max="-2" attributes="0"/>
-                                      <Component id="lblDescricao" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblProduto" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Component id="btnConsultarValor" min="-2" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="tfCodigoProduto" min="-2" pref="200" max="-2" attributes="0"/>
                                                   <Component id="lblCodigoProduto" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="tfCodigoProduto" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
+                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="btnInserirItem" min="-2" pref="135" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="lblQuantidade" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="tfQuantidade" min="-2" pref="210" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="tfDescricao" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lblCodigoItem" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="tfCodigoItem" min="-2" pref="146" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lblValorUnitario" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="tfValorUnitario" min="-2" pref="132" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lblValorItem" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="tfValorItem" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="btnInserirItem" min="-2" pref="135" max="-2" attributes="0"/>
+                                              <Component id="lblQuantidade" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfQuantidade" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                   <Component id="btnCancelar" min="-2" pref="161" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="135" max="32767" attributes="0"/>
+                          <EmptySpace pref="153" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnConcluirVenda" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="lblQuantidade1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblItemTabela" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblQuantidade5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="lblQuantidade2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCodigoTabela" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblQuantidade3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblProdutoTabela" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="lblQuantidadeTabela" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblQuantidade6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSubtotalTabela" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblQuantidade4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblValorTotalTabela" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="scrollTblPedido" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -150,14 +141,17 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="tfPedido1" min="-2" pref="32" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblCodigoProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tfCodigoProduto" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="tfQuantidade" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="lblQuantidade" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfQuantidade" min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="lblCodigoProduto" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfCodigoProduto" min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -167,9 +161,9 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="tfPedido" min="-2" pref="32" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                          <Component id="lblDescricao" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblProduto" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfDescricao" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="tfProduto" min="-2" pref="35" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblValorItem" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -182,25 +176,26 @@
                               <Component id="tfValorUnitario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="tfCodigoItem" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                          <Component id="btnCancelar" min="-2" pref="38" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblQuantidade1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblQuantidade2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblQuantidade3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblQuantidade4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblQuantidade5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblQuantidade6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblItemTabela" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblProdutoTabela" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblQuantidadeTabela" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblValorTotalTabela" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCodigoTabela" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSubtotalTabela" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scrollTblPedido" min="-2" pref="520" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnInserirCliente" min="-2" pref="35" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="btnConcluirVenda" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnConcluirVenda" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="btnCancelar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace pref="26" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -247,9 +242,15 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfCodigoItem">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCodigoItemActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfCodigoItem.setEditable(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblQuantidade">
           <Properties>
@@ -264,7 +265,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfQuantidade">
         </Component>
-        <Component class="javax.swing.JLabel" name="lblDescricao">
+        <Component class="javax.swing.JLabel" name="lblProduto">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -272,16 +273,19 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
+            <Property name="text" type="java.lang.String" value="Produto"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfDescricao">
+        <Component class="javax.swing.JTextField" name="tfProduto">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDescricaoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfProdutoActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfProduto.setEditable(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblValorUnitario">
           <Properties>
@@ -302,6 +306,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfValorUnitarioActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfValorUnitario.setEditable(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblValorItem">
           <Properties>
@@ -318,6 +325,9 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tfValorItem.setEditable(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="btnConsultarValor">
           <Properties>
@@ -369,13 +379,7 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tblPedido">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="35" green="2a" red="28" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="// Estilo geral da tabela&#xa;    tblPedido.setFont(new Font(&quot;Segoe UI&quot;, Font.PLAIN, 14));&#xa;    tblPedido.setRowHeight(30);&#xa;    tblPedido.setShowGrid(false);&#xa;    tblPedido.setIntercellSpacing(new Dimension(0, 0));&#xa;    tblPedido.setSelectionBackground(new Color(0x28, 0x2A, 0x35));&#xa;    tblPedido.setSelectionForeground(Color.WHITE);&#xa;&#xa;    tblPedido.setTableHeader(null);">
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="// Estilo geral da tabela&#xa;    tblPedido.setFont(new Font(&quot;Segoe UI&quot;, Font.PLAIN, 14));&#xa;    tblPedido.setRowHeight(30);&#xa;    tblPedido.setShowGrid(false);&#xa;    tblPedido.setIntercellSpacing(new Dimension(0, 0));&#xa;    tblPedido.setSelectionBackground(new Color(0x28, 0x2A, 0x35));&#xa;    tblPedido.setSelectionForeground(Color.BLACK);&#xa;&#xa;    tblPedido.setTableHeader(null);">
                   <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {},&#xa;    new String [] {&#xa;        &quot;Cod. Item&quot;, &quot;Cod. Produto&quot;, &quot;Descri&#xe7;&#xe3;o&quot;, &quot;Qtde&quot;, &quot;Valor Uni.&quot;, &quot;Valor Total&quot;&#xa;    }&#xa;&#xa;)" type="code"/>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" preCode="// Remove a borda padr&#xe3;o do scroll (opcional, para ficar mais limpo)&#xa;scrollTblPedido.setBorder(BorderFactory.createEmptyBorder());">
@@ -441,7 +445,7 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblQuantidade1">
+        <Component class="javax.swing.JLabel" name="lblItemTabela">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -452,7 +456,7 @@
             <Property name="text" type="java.lang.String" value="Item"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblQuantidade2">
+        <Component class="javax.swing.JLabel" name="lblProdutoTabela">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -463,7 +467,7 @@
             <Property name="text" type="java.lang.String" value="Produto"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblQuantidade3">
+        <Component class="javax.swing.JLabel" name="lblQuantidadeTabela">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -474,7 +478,7 @@
             <Property name="text" type="java.lang.String" value="Quantidade"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblQuantidade4">
+        <Component class="javax.swing.JLabel" name="lblValorTotalTabela">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -485,7 +489,7 @@
             <Property name="text" type="java.lang.String" value="Valor Total"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblQuantidade5">
+        <Component class="javax.swing.JLabel" name="lblCodigoTabela">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -496,7 +500,7 @@
             <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblQuantidade6">
+        <Component class="javax.swing.JLabel" name="lblSubtotalTabela">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>

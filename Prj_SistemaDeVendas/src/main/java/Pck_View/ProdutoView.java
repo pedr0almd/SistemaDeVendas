@@ -97,8 +97,8 @@ public class ProdutoView extends javax.swing.JFrame {
 
         lblAdicionarProduto.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblAdicionarProduto.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdicionarProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAdicionarProduto.setText("Adicionar Produto");
+        lblAdicionarProduto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblAdicionarProduto.setText("Produtos");
         lblAdicionarProduto.setToolTipText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -10,7 +10,7 @@ Aplicação simples para o gerenciamento de vendas, com cadastro de clientes, pr
 - Emissão de pedidos de venda (❌)
 - Inclusão de itens nos pedidos (❌)
 - Lista de itens no pedido (❌)
-- Cálculo automático do valor total do pedido (✔️)
+- Cálculo automático do valor total do pedido (❌)
 - Listagem, atualização e exclusão de registros (❌)
 - Emissão de nota não-fiscal (❌)
 - Integração com banco de dados usando JDBC (✔️)
@@ -36,7 +36,7 @@ Aplicação simples para o gerenciamento de vendas, com cadastro de clientes, pr
 
   3. Abra o projeto no NetBeans IDE
   4. Configure o banco e as tabelas conforme o script (disponivel em /sql/estrutura.sql)
-  5 Atualize os dados de conexão no arquivo de configuração (ConexaoMySql.java)
+  5. Atualize os dados de conexão no arquivo de configuração (ConexaoMySql.java)
   6. Execute alguma tela e teste as funcionalidades
 
 
