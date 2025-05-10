@@ -4,7 +4,13 @@
  */
 package Pck_View;
 
+import Pck_DAO.ClienteDAO;
+import Pck_Model.ClienteModel;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -17,7 +23,12 @@ public class ClienteView extends javax.swing.JFrame {
      */
     public ClienteView() {
         initComponents();
+        carregarTabelaClientes();
+
+
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,10 +41,13 @@ public class ClienteView extends javax.swing.JFrame {
 
         btnCancelar = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
+        lblAdicionarCliente = new javax.swing.JLabel();
+        jScrollTblCliente = new javax.swing.JScrollPane();
+        tblCliente = new javax.swing.JTable();
         btnApagar = new javax.swing.JToggleButton();
         btnAdicionar = new javax.swing.JToggleButton();
         btnVoltar = new javax.swing.JToggleButton();
-        lblAdicionarProduto = new javax.swing.JLabel();
+        btnAlterar = new javax.swing.JToggleButton();
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -52,6 +66,25 @@ public class ClienteView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(40, 42, 53));
+
+        lblAdicionarCliente.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblAdicionarCliente.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdicionarCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblAdicionarCliente.setText("Clientes");
+        lblAdicionarCliente.setToolTipText("");
+
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollTblCliente.setViewportView(tblCliente);
 
         btnApagar.setBackground(new java.awt.Color(255, 51, 51));
         btnApagar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -95,40 +128,57 @@ public class ClienteView extends javax.swing.JFrame {
             }
         });
 
-        lblAdicionarProduto.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblAdicionarProduto.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdicionarProduto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblAdicionarProduto.setText("Clientes");
-        lblAdicionarProduto.setToolTipText("");
+        btnAlterar.setBackground(new java.awt.Color(255, 204, 0));
+        btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterar.setText("Apagar");
+        btnApagar.setBorderPainted(false);               // Remove borda
+        btnApagar.setFocusPainted(false);                // Remove destaque de foco
+        btnApagar.setContentAreaFilled(false);           // Remove preenchimento padrão
+        btnApagar.setOpaque(true);  // Necessário para aplicar o fundo
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, Short.MAX_VALUE)
-                .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
-                .addComponent(lblAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblAdicionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollTblCliente)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(197, 197, 197)
+                                .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
+                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(44, 44, 44))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(lblAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
+                .addComponent(lblAdicionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollTblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                    .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(156, 156, 156))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,14 +189,17 @@ public class ClienteView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-
+       
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
@@ -163,6 +216,10 @@ public class ClienteView extends javax.swing.JFrame {
         this.setVisible(false);
         new MenuView().setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,10 +259,43 @@ public class ClienteView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAdicionar;
+    private javax.swing.JToggleButton btnAlterar;
     private javax.swing.JToggleButton btnApagar;
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JToggleButton btnVoltar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblAdicionarProduto;
+    private javax.swing.JScrollPane jScrollTblCliente;
+    private javax.swing.JLabel lblAdicionarCliente;
+    private javax.swing.JTable tblCliente;
     // End of variables declaration//GEN-END:variables
+
+    
+    private void carregarTabelaClientes(){
+        
+        try {
+        ClienteDAO clienteDAO = new ClienteDAO();
+        List<ClienteModel> listaClientes = clienteDAO.listarClientes(); // método que você deve implementar
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("CPF");
+        modelo.addColumn("Nome");
+        modelo.addColumn("Endereço");
+        modelo.addColumn("Telefone");
+        modelo.addColumn("Crédito");
+
+        for (ClienteModel cliente : listaClientes) {
+            modelo.addRow(new Object[]{
+                cliente.getA01_cpf(),
+                cliente.getA01_nome(),
+                cliente.getA01_endereco(),
+                cliente.getA01_telefone(),
+                cliente.getA01_credito()
+            });
+        }
+
+        tblCliente.setModel(modelo);
+    } catch (Exception e) {
+        e.printStackTrace(); // ou exiba um JOptionPane com a mensagem de erro
+    }
+    }
 }

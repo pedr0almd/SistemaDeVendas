@@ -4,7 +4,11 @@
  */
 package Pck_View;
 
+import Pck_DAO.ProdutoDAO;
+import Pck_Model.ProdutoModel;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +21,7 @@ public class ProdutoView extends javax.swing.JFrame {
      */
     public ProdutoView() {
         initComponents();
+        carregarTabelaProdutos();
     }
 
     /**
@@ -30,10 +35,13 @@ public class ProdutoView extends javax.swing.JFrame {
 
         btnCancelar = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
+        lblAdicionarProduto = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProduto = new javax.swing.JTable();
+        btnVoltar = new javax.swing.JToggleButton();
         btnApagar = new javax.swing.JToggleButton();
         btnAdicionar = new javax.swing.JToggleButton();
-        btnVoltar = new javax.swing.JToggleButton();
-        lblAdicionarProduto = new javax.swing.JLabel();
+        btnAlterar = new javax.swing.JToggleButton();
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -52,6 +60,39 @@ public class ProdutoView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(40, 42, 53));
+
+        lblAdicionarProduto.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblAdicionarProduto.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdicionarProduto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblAdicionarProduto.setText("Produtos");
+        lblAdicionarProduto.setToolTipText("");
+
+        tblProduto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblProduto);
+
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.setBackground(Color.WHITE);            // Fundo branco
+        btnVoltar.setForeground(Color.BLACK);            // Cor do texto (pode ser branco se quiser invisível)
+        btnVoltar.setBorderPainted(false);               // Remove borda
+        btnVoltar.setFocusPainted(false);                // Remove destaque de foco
+        btnVoltar.setContentAreaFilled(false);           // Remove preenchimento padrão
+        btnVoltar.setOpaque(true);  // Necessário para aplicar o fundo
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         btnApagar.setBackground(new java.awt.Color(255, 51, 51));
         btnApagar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -81,61 +122,63 @@ public class ProdutoView extends javax.swing.JFrame {
             }
         });
 
-        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnVoltar.setText("Voltar");
-        btnVoltar.setBackground(Color.WHITE);            // Fundo branco
-        btnVoltar.setForeground(Color.BLACK);            // Cor do texto (pode ser branco se quiser invisível)
-        btnVoltar.setBorderPainted(false);               // Remove borda
-        btnVoltar.setFocusPainted(false);                // Remove destaque de foco
-        btnVoltar.setContentAreaFilled(false);           // Remove preenchimento padrão
-        btnVoltar.setOpaque(true);  // Necessário para aplicar o fundo
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.setBackground(new java.awt.Color(255, 204, 0));
+        btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterar.setText("Apagar");
+        btnApagar.setBorderPainted(false);               // Remove borda
+        btnApagar.setFocusPainted(false);                // Remove destaque de foco
+        btnApagar.setContentAreaFilled(false);           // Remove preenchimento padrão
+        btnApagar.setOpaque(true);  // Necessário para aplicar o fundo
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
-
-        lblAdicionarProduto.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblAdicionarProduto.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdicionarProduto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblAdicionarProduto.setText("Produtos");
-        lblAdicionarProduto.setToolTipText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, Short.MAX_VALUE)
-                .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(lblAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(96, 96, 96)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158)
+                        .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 934, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(54, 54, 54)
                 .addComponent(lblAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                    .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,19 +188,23 @@ public class ProdutoView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.setVisible(false);
+        new MenuView().setVisible(true);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    }//GEN-LAST:event_btnApagarActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         this.setVisible(false);
         new CriarProdutoView().setVisible(true);
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.setVisible(false);
-        new MenuView().setVisible(true);
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
+
+    }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
@@ -201,10 +248,40 @@ public class ProdutoView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAdicionar;
+    private javax.swing.JToggleButton btnAlterar;
     private javax.swing.JToggleButton btnApagar;
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JToggleButton btnVoltar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdicionarProduto;
+    private javax.swing.JTable tblProduto;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarTabelaProdutos() {
+        try {
+        ProdutoDAO clienteDAO = new ProdutoDAO();
+        List<ProdutoModel> listaClientes = clienteDAO.listarProdutos(); // método que você deve implementar
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Descrição");
+        modelo.addColumn("Valor Unitario (R$)");
+        modelo.addColumn("Estoque (UN)");
+
+        for (ProdutoModel cliente : listaClientes) {
+            modelo.addRow(new Object[]{
+                cliente.getA03_codigo(),
+                cliente.getA03_descricao(),
+                cliente.getA03_valorUnitario(),
+                cliente.getA03_estoque()
+            });
+        }
+
+        tblProduto.setModel(modelo);
+    } catch (Exception e) {
+        e.printStackTrace(); // ou exiba um JOptionPane com a mensagem de erro
+    }
+    }
+    
 }

@@ -39,7 +39,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -59,39 +63,90 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="btnVoltar" min="-2" pref="161" max="-2" attributes="0"/>
-                  <EmptySpace pref="462" max="32767" attributes="0"/>
-                  <Component id="btnApagar" min="-2" pref="161" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="btnAdicionar" min="-2" pref="161" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                  <Component id="lblAdicionarProduto" min="-2" pref="317" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="btnVoltar" min="-2" pref="161" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                          <Component id="btnApagar" min="-2" pref="161" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="btnAlterar" min="-2" pref="144" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="btnAdicionar" min="-2" pref="161" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lblAdicionarProduto" min="-2" pref="317" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="934" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="88" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   <Component id="lblAdicionarProduto" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace pref="472" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="367" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnAdicionar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="btnApagar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="btnVoltar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnApagar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnAlterar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnAdicionar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblAdicionarProduto">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="36" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="text" type="java.lang.String" value="Produtos"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="tblProduto">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="4" rowCount="4">
+                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JToggleButton" name="btnVoltar">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="16" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Voltar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVoltarActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnVoltar.setBackground(Color.WHITE);            // Fundo branco&#xa;        btnVoltar.setForeground(Color.BLACK);            // Cor do texto (pode ser branco se quiser invis&#xed;vel)&#xa;        btnVoltar.setBorderPainted(false);               // Remove borda&#xa;        btnVoltar.setFocusPainted(false);                // Remove destaque de foco&#xa;        btnVoltar.setContentAreaFilled(false);           // Remove preenchimento padr&#xe3;o&#xa;        btnVoltar.setOpaque(true);  // Necess&#xe1;rio para aplicar o fundo"/>
+          </AuxValues>
+        </Component>
         <Component class="javax.swing.JToggleButton" name="btnApagar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -132,32 +187,25 @@
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnAdicionar.setBorderPainted(false);               // Remove borda&#xa;        btnAdicionar.setFocusPainted(false);                // Remove destaque de foco&#xa;        btnAdicionar.setContentAreaFilled(false);           // Remove preenchimento padr&#xe3;o&#xa;        btnAdicionar.setOpaque(true);  // Necess&#xe1;rio para aplicar o fundo"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="btnVoltar">
+        <Component class="javax.swing.JToggleButton" name="btnAlterar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="cc" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="16" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Voltar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVoltarActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnVoltar.setBackground(Color.WHITE);            // Fundo branco&#xa;        btnVoltar.setForeground(Color.BLACK);            // Cor do texto (pode ser branco se quiser invis&#xed;vel)&#xa;        btnVoltar.setBorderPainted(false);               // Remove borda&#xa;        btnVoltar.setFocusPainted(false);                // Remove destaque de foco&#xa;        btnVoltar.setContentAreaFilled(false);           // Remove preenchimento padr&#xe3;o&#xa;        btnVoltar.setOpaque(true);  // Necess&#xe1;rio para aplicar o fundo"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblAdicionarProduto">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="36" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="Produtos"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="text" type="java.lang.String" value="Apagar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnApagar.setBorderPainted(false);               // Remove borda&#xa;        btnApagar.setFocusPainted(false);                // Remove destaque de foco&#xa;        btnApagar.setContentAreaFilled(false);           // Remove preenchimento padr&#xe3;o&#xa;        btnApagar.setOpaque(true);  // Necess&#xe1;rio para aplicar o fundo"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
