@@ -11,12 +11,21 @@
         <exec.mainClass>com.mycompany.prj_sistemadevendas.Prj_SistemaDeVendas</exec.mainClass>
     </properties>
     <dependencies>
-    <!-- Conexão do MySql -->
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.33</version> <!-- Verificar versão -->
-    </dependency>
-</dependencies>
+        <!-- Conexão do MySql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version> <!-- Verificar versão -->
+        </dependency>
+    </dependencies>
+    
+    <build>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+        </resource>
+    </resources>
+</build>
+
 
 </project>
