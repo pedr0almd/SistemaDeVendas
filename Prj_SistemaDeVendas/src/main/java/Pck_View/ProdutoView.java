@@ -7,7 +7,11 @@ package Pck_View;
 import Pck_DAO.ProdutoDAO;
 import Pck_Model.ProdutoModel;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.util.List;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -41,7 +45,11 @@ public class ProdutoView extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JToggleButton();
         btnApagar = new javax.swing.JToggleButton();
         btnAdicionar = new javax.swing.JToggleButton();
-        btnAlterar = new javax.swing.JToggleButton();
+        lblItemTabela = new javax.swing.JLabel();
+        lblItemTabela1 = new javax.swing.JLabel();
+        lblItemTabela2 = new javax.swing.JLabel();
+        lblItemTabela3 = new javax.swing.JLabel();
+        btnAlterar = new javax.swing.JButton();
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -69,15 +77,21 @@ public class ProdutoView extends javax.swing.JFrame {
 
         tblProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        // Estilo geral da tabela
+        tblProduto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        tblProduto.setRowHeight(30);
+        tblProduto.setShowGrid(false);
+        tblProduto.setIntercellSpacing(new Dimension(0, 0));
+        tblProduto.setSelectionBackground(new Color(0x28, 0x2A, 0x35));
+        tblProduto.setSelectionForeground(Color.BLACK);
+
+        tblProduto.setTableHeader(null);
         jScrollPane1.setViewportView(tblProduto);
 
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -122,14 +136,31 @@ public class ProdutoView extends javax.swing.JFrame {
             }
         });
 
-        btnAlterar.setBackground(new java.awt.Color(255, 204, 0));
+        lblItemTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblItemTabela.setForeground(new java.awt.Color(255, 255, 255));
+        lblItemTabela.setText("Estoqur(UN)");
+
+        lblItemTabela1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblItemTabela1.setForeground(new java.awt.Color(255, 255, 255));
+        lblItemTabela1.setText("Código");
+
+        lblItemTabela2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblItemTabela2.setForeground(new java.awt.Color(255, 255, 255));
+        lblItemTabela2.setText("Produto");
+
+        lblItemTabela3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblItemTabela3.setForeground(new java.awt.Color(255, 255, 255));
+        lblItemTabela3.setText("Valor (R$)");
+
+        btnAlterar.setBackground(new java.awt.Color(40, 42, 53));
         btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlterar.setText("Apagar");
-        btnApagar.setBorderPainted(false);               // Remove borda
-        btnApagar.setFocusPainted(false);                // Remove destaque de foco
-        btnApagar.setContentAreaFilled(false);           // Remove preenchimento padrão
-        btnApagar.setOpaque(true);  // Necessário para aplicar o fundo
+        btnAlterar.setText("Alterar");
+        btnAlterar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        //btnConsultar.setBorderPainted(false);               // Remove borda
+        btnAlterar.setFocusPainted(false);                // Remove destaque de foco
+        btnAlterar.setContentAreaFilled(false);           // Remove preenchimento padrão
+        btnAlterar.setOpaque(true);  // Necessário para aplicar o fundo
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
@@ -141,34 +172,57 @@ public class ProdutoView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(158, 158, 158)
-                        .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 934, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(88, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(lblItemTabela1)
+                        .addGap(186, 186, 186)
+                        .addComponent(lblItemTabela2)
+                        .addGap(179, 179, 179)
+                        .addComponent(lblItemTabela3)
+                        .addGap(166, 166, 166)
+                        .addComponent(lblItemTabela))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(537, 537, 537)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(31, 31, 31)
                 .addComponent(lblAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblItemTabela3)
+                    .addComponent(lblItemTabela)
+                    .addComponent(lblItemTabela2)
+                    .addComponent(lblItemTabela1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,7 +236,7 @@ public class ProdutoView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -192,10 +246,6 @@ public class ProdutoView extends javax.swing.JFrame {
         this.setVisible(false);
         new MenuView().setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         this.setVisible(false);
@@ -210,6 +260,10 @@ public class ProdutoView extends javax.swing.JFrame {
         this.setVisible(false);
         new MenuView().setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,40 +302,52 @@ public class ProdutoView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAdicionar;
-    private javax.swing.JToggleButton btnAlterar;
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JToggleButton btnApagar;
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JToggleButton btnVoltar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdicionarProduto;
+    private javax.swing.JLabel lblItemTabela;
+    private javax.swing.JLabel lblItemTabela1;
+    private javax.swing.JLabel lblItemTabela2;
+    private javax.swing.JLabel lblItemTabela3;
     private javax.swing.JTable tblProduto;
     // End of variables declaration//GEN-END:variables
 
     private void carregarTabelaProdutos() {
         try {
-        ProdutoDAO clienteDAO = new ProdutoDAO();
-        List<ProdutoModel> listaClientes = clienteDAO.listarProdutos(); // método que você deve implementar
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            List<ProdutoModel> listaProdutos = produtoDAO.listarProdutos(); // método que você deve implementar
 
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Código");
-        modelo.addColumn("Descrição");
-        modelo.addColumn("Valor Unitario (R$)");
-        modelo.addColumn("Estoque (UN)");
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("Código");
+            modelo.addColumn("Descrição");
+            modelo.addColumn("Valor Unitario (R$)");
+            modelo.addColumn("Estoque (UN)");
 
-        for (ProdutoModel cliente : listaClientes) {
-            modelo.addRow(new Object[]{
-                cliente.getA03_codigo(),
-                cliente.getA03_descricao(),
-                cliente.getA03_valorUnitario(),
-                cliente.getA03_estoque()
-            });
+            for (ProdutoModel produtos : listaProdutos) {
+                modelo.addRow(new Object[]{
+                    produtos.getA03_codigo(),
+                    produtos.getA03_descricao(),
+                    produtos.getA03_valorUnitario(),
+                    produtos.getA03_estoque()
+                });
+            }
+
+            tblProduto.setModel(modelo);
+        
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+
+            for (int i = 0; i < tblProduto.getColumnCount(); i++) {
+                tblProduto.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // ou exiba um JOptionPane com a mensagem de erro
         }
+    }
 
-        tblProduto.setModel(modelo);
-    } catch (Exception e) {
-        e.printStackTrace(); // ou exiba um JOptionPane com a mensagem de erro
-    }
-    }
-    
 }

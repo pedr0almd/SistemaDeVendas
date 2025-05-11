@@ -20,7 +20,6 @@ public class PedidoView extends javax.swing.JFrame {
 
     public PedidoView() {
         initComponents();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -48,14 +47,13 @@ public class PedidoView extends javax.swing.JFrame {
         tblPedido = new javax.swing.JTable();
         btnConcluirVenda = new javax.swing.JButton();
         btnCancelar = new javax.swing.JToggleButton();
-        tfPedido1 = new javax.swing.JLabel();
         lblItemTabela = new javax.swing.JLabel();
         lblProdutoTabela = new javax.swing.JLabel();
         lblQuantidadeTabela = new javax.swing.JLabel();
         lblValorTotalTabela = new javax.swing.JLabel();
         lblCodigoTabela = new javax.swing.JLabel();
-        lblSubtotalTabela = new javax.swing.JLabel();
         btnInserirCliente = new javax.swing.JButton();
+        tfPedido1 = new javax.swing.JLabel();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -78,6 +76,8 @@ public class PedidoView extends javax.swing.JFrame {
         lblCodigoItem.setForeground(new java.awt.Color(255, 255, 255));
         lblCodigoItem.setText("Código do item");
 
+        tfCodigoItem.setBackground(new java.awt.Color(204, 204, 204));
+        tfCodigoItem.setForeground(new java.awt.Color(102, 102, 102));
         tfCodigoItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfCodigoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +93,8 @@ public class PedidoView extends javax.swing.JFrame {
         lblProduto.setForeground(new java.awt.Color(255, 255, 255));
         lblProduto.setText("Produto");
 
+        tfProduto.setBackground(new java.awt.Color(204, 204, 204));
+        tfProduto.setForeground(new java.awt.Color(102, 102, 102));
         tfProduto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,8 +105,10 @@ public class PedidoView extends javax.swing.JFrame {
         lblValorUnitario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblValorUnitario.setForeground(new java.awt.Color(255, 255, 255));
         lblValorUnitario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblValorUnitario.setText("Valor Unitário (R$)");
+        lblValorUnitario.setText("Valor Unitário");
 
+        tfValorUnitario.setBackground(new java.awt.Color(204, 204, 204));
+        tfValorUnitario.setForeground(new java.awt.Color(102, 102, 102));
         tfValorUnitario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfValorUnitario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,9 +118,16 @@ public class PedidoView extends javax.swing.JFrame {
 
         lblValorItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblValorItem.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorItem.setText("Valor Item (R$)");
+        lblValorItem.setText("Valor Item ");
 
+        tfValorItem.setBackground(new java.awt.Color(204, 204, 204));
+        tfValorItem.setForeground(new java.awt.Color(102, 102, 102));
         tfValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfValorItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfValorItemActionPerformed(evt);
+            }
+        });
 
         btnConsultarValor.setBackground(new java.awt.Color(85, 81, 74));
         btnConsultarValor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -160,10 +171,9 @@ public class PedidoView extends javax.swing.JFrame {
         tblPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
             new String [] {
-                "Cod. Item", "Cod. Produto", "Descrição", "Qtde", "Valor Uni.", "Valor Total"
+                "Cod. Item", "Cod. Produto", "Descrição", "Qtde", "Valor Total"
             }
-
-        ));
+        ) );
         // Estilo geral da tabela
         tblPedido.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         tblPedido.setRowHeight(30);
@@ -212,12 +222,6 @@ public class PedidoView extends javax.swing.JFrame {
             }
         });
 
-        tfPedido1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        tfPedido1.setForeground(new java.awt.Color(255, 255, 255));
-        tfPedido1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tfPedido1.setText("Pedido");
-        tfPedido1.setToolTipText("");
-
         lblItemTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblItemTabela.setForeground(new java.awt.Color(255, 255, 255));
         lblItemTabela.setText("Item");
@@ -232,15 +236,12 @@ public class PedidoView extends javax.swing.JFrame {
 
         lblValorTotalTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblValorTotalTabela.setForeground(new java.awt.Color(255, 255, 255));
+        lblValorTotalTabela.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblValorTotalTabela.setText("Valor Total");
 
         lblCodigoTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCodigoTabela.setForeground(new java.awt.Color(255, 255, 255));
         lblCodigoTabela.setText("Código");
-
-        lblSubtotalTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblSubtotalTabela.setForeground(new java.awt.Color(255, 255, 255));
-        lblSubtotalTabela.setText("Subtotal");
 
         btnInserirCliente.setBackground(new java.awt.Color(40, 42, 53));
         btnInserirCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -257,77 +258,85 @@ public class PedidoView extends javax.swing.JFrame {
             }
         });
 
+        tfPedido1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        tfPedido1.setForeground(new java.awt.Color(255, 255, 255));
+        tfPedido1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tfPedido1.setText("Pedido");
+        tfPedido1.setToolTipText("");
+
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(73, 73, 73)
+                .addComponent(tfPedido1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInserirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblCodigoItem)
-                                            .addComponent(tfCodigoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblValorUnitario)
-                                            .addComponent(tfValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(23, 23, 23)
-                                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tfValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblValorItem)))
-                                    .addComponent(tfProduto)
-                                    .addComponent(tfPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblProduto)
-                                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(btnConsultarValor)
-                                            .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblCodigoProduto)
-                                                .addComponent(tfCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(12, 12, 12)
-                                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnInserirItem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblQuantidade)
-                                            .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                        .addGap(48, 48, 48)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnConcluirVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                .addComponent(lblItemTabela)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblCodigoTabela)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblProdutoTabela)
-                                .addGap(12, 12, 12)
-                                .addComponent(lblQuantidadeTabela)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblSubtotalTabela)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblValorTotalTabela))
-                            .addComponent(scrollTblPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addGap(43, 43, 43))
+                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCodigoItem)
+                                    .addComponent(tfCodigoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblValorUnitario)
+                                    .addComponent(tfValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(23, 23, 23)
+                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblValorItem)))
+                            .addComponent(tfProduto)
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblProduto))
+                                .addGap(230, 230, 230))))
+                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnConsultarValor)
+                            .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblCodigoProduto)
+                                .addComponent(tfCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(12, 12, 12)
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnInserirItem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblQuantidade)
+                            .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(292, 292, 292)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollTblPedido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
+                        .addComponent(lblItemTabela)
+                        .addGap(91, 91, 91)
+                        .addComponent(lblCodigoTabela)
+                        .addGap(81, 81, 81)
+                        .addComponent(lblProdutoTabela)
+                        .addGap(66, 66, 66)
+                        .addComponent(lblQuantidadeTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(lblValorTotalTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))
+                    .addComponent(btnInserirCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConcluirVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35))
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                .addGap(82, 82, 82)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addComponent(tfPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
+                        .addGap(29, 29, 29)
+                        .addComponent(tfPedido1)
+                        .addGap(61, 61, 61)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                                 .addComponent(lblQuantidade)
@@ -341,7 +350,7 @@ public class PedidoView extends javax.swing.JFrame {
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnConsultarValor)
                             .addComponent(btnInserirItem))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(77, 77, 77)
                         .addComponent(tfPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(lblProduto)
@@ -356,25 +365,24 @@ public class PedidoView extends javax.swing.JFrame {
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfCodigoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(146, 146, 146))
+                            .addComponent(tfCodigoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblItemTabela)
                             .addComponent(lblProdutoTabela)
                             .addComponent(lblQuantidadeTabela)
-                            .addComponent(lblValorTotalTabela)
                             .addComponent(lblCodigoTabela)
-                            .addComponent(lblSubtotalTabela))
+                            .addComponent(lblValorTotalTabela))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollTblPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnInserirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnConcluirVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(26, Short.MAX_VALUE))))
+                        .addComponent(scrollTblPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnInserirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConcluirVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
 
         tfCodigoItem.setEditable(false);
@@ -386,14 +394,16 @@ public class PedidoView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -418,10 +428,15 @@ public class PedidoView extends javax.swing.JFrame {
 
             if (produto != null) {
                 tfProduto.setText(produto.getA03_descricao());
-                tfValorUnitario.setText(String.valueOf(produto.getA03_valorUnitario()));
 
+                // Formata o valor unitário com "R$" e duas casas decimais
+                String valorUnitarioFormatado = String.format("R$ %.2f", produto.getA03_valorUnitario()).replace(".", ",");
+                tfValorUnitario.setText(valorUnitarioFormatado);
+
+                // Calcula e formata o valor do item (valor unitário x quantidade)
                 double valorItem = produto.getA03_valorUnitario() * quantidade;
-                tfValorItem.setText(String.format("%.2f", valorItem));
+                String valorItemFormatado = String.format("R$ %.2f", valorItem).replace(".", ",");
+                tfValorItem.setText(valorItemFormatado);
 
                 tfCodigoItem.setText(String.valueOf(System.currentTimeMillis()));
 
@@ -432,9 +447,19 @@ public class PedidoView extends javax.swing.JFrame {
                     tfCodigoProduto.getText(),
                     tfProduto.getText(),
                     tfQuantidade.getText(),
-                    tfValorUnitario.getText(),
-                    tfValorItem.getText()
+                    valorItemFormatado
                 });
+
+                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+
+// Aplica o renderizador para todas as colunas
+                for (int i = 0; i < tblPedido.getColumnCount(); i++) {
+                    tblPedido.getColumnModel().getColumn(i).setCellRenderer(centralizado);
+                }
+                
+                tblPedido.setDefaultEditor(Object.class, null);
+
 
             } else {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado.");
@@ -471,7 +496,7 @@ public class PedidoView extends javax.swing.JFrame {
     }//GEN-LAST:event_tfValorUnitarioActionPerformed
 
     private void tfProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfProdutoActionPerformed
-       tfProduto.setEditable(false);
+        tfProduto.setEditable(false);
     }//GEN-LAST:event_tfProdutoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -486,6 +511,10 @@ public class PedidoView extends javax.swing.JFrame {
     private void btnInserirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInserirClienteActionPerformed
+
+    private void tfValorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValorItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfValorItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -552,7 +581,6 @@ public class PedidoView extends javax.swing.JFrame {
     private javax.swing.JLabel lblProdutoTabela;
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblQuantidadeTabela;
-    private javax.swing.JLabel lblSubtotalTabela;
     private javax.swing.JLabel lblValorItem;
     private javax.swing.JLabel lblValorTotalTabela;
     private javax.swing.JLabel lblValorUnitario;

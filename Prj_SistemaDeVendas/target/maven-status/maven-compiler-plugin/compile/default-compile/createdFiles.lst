@@ -52,6 +52,7 @@ Pck_DAO\ProdutoDAO.class
 Pck_View\PedidoView$7.class
 Pck_View\CriarProdutoView$5.class
 Pck_View\CadastrarClienteView$6.class
+Pck_View\PedidoView$12.class
 Pck_View\ClienteView.class
 Pck_View\ProdutoView$5.class
 Pck_View\ClienteView$2.class
