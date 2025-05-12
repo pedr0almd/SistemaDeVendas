@@ -235,7 +235,7 @@ public class CriarProdutoView extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
-        new MenuView().setVisible(true);
+        new ProdutoView().setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**

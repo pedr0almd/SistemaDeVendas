@@ -124,10 +124,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollTblCliente" min="-2" pref="356" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnAdicionar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnApagar" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="btnAlterar" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnAdicionar" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnVoltar" min="-2" pref="38" max="-2" attributes="0"/>
@@ -166,8 +166,8 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();&#xd;&#xa;centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);&#xd;&#xa;for (int i = 0; i &lt; tblCliente.getColumnCount(); i++) {&#xd;&#xa;    tblCliente.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);&#xd;&#xa;}&#xd;&#xa;"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="// Estilo geral da tabela&#xa;    tblCliente.setFont(new Font(&quot;Segoe UI&quot;, Font.PLAIN, 14));&#xa;    tblCliente.setRowHeight(30);&#xa;    tblCliente.setShowGrid(false);&#xa;    tblCliente.setIntercellSpacing(new Dimension(0, 0));&#xa;    tblCliente.setSelectionBackground(new Color(0x28, 0x2A, 0x35));&#xa;    tblCliente.setSelectionForeground(Color.BLACK);&#xa;&#xa;    tblCliente.setTableHeader(null);"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();&#xa;centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);&#xa;for (int i = 0; i &lt; tblCliente.getColumnCount(); i++) {&#xa;    tblCliente.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="// Estilo geral da tabela&#xa;    tblCliente.setFont(new Font(&quot;Segoe UI&quot;, Font.PLAIN, 14));&#xa;    tblCliente.setRowHeight(30);&#xa;    tblCliente.setShowGrid(false);&#xa;    tblCliente.setIntercellSpacing(new Dimension(0, 0));&#xa;    tblCliente.setSelectionBackground(new Color(0x55, 0x51, 0x4A));&#xa;    tblCliente.setSelectionForeground(Color.WHITE);&#xa;&#xa;    tblCliente.setTableHeader(null);"/>
               </AuxValues>
             </Component>
           </SubComponents>

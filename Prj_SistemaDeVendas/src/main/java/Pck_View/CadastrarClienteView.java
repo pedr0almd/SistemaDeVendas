@@ -270,7 +270,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
-        new MenuView().setVisible(true);
+        new ClienteView().setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void tfCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCPFActionPerformed

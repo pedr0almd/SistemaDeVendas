@@ -5,8 +5,11 @@ import Pck_Model.ProdutoModel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -50,7 +53,7 @@ public class PedidoView extends javax.swing.JFrame {
         lblItemTabela = new javax.swing.JLabel();
         lblProdutoTabela = new javax.swing.JLabel();
         lblQuantidadeTabela = new javax.swing.JLabel();
-        lblValorTotalTabela = new javax.swing.JLabel();
+        lblValorItemTabela = new javax.swing.JLabel();
         lblCodigoTabela = new javax.swing.JLabel();
         btnInserirCliente = new javax.swing.JButton();
         tfPedido1 = new javax.swing.JLabel();
@@ -179,8 +182,8 @@ public class PedidoView extends javax.swing.JFrame {
         tblPedido.setRowHeight(30);
         tblPedido.setShowGrid(false);
         tblPedido.setIntercellSpacing(new Dimension(0, 0));
-        tblPedido.setSelectionBackground(new Color(0x28, 0x2A, 0x35));
-        tblPedido.setSelectionForeground(Color.BLACK);
+        tblPedido.setSelectionBackground(new Color(0x55, 0x51, 0x4A));
+        tblPedido.setSelectionForeground(Color.WHITE);
 
         tblPedido.setTableHeader(null);
         tblPedido.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -234,10 +237,10 @@ public class PedidoView extends javax.swing.JFrame {
         lblQuantidadeTabela.setForeground(new java.awt.Color(255, 255, 255));
         lblQuantidadeTabela.setText("Quantidade");
 
-        lblValorTotalTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblValorTotalTabela.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorTotalTabela.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblValorTotalTabela.setText("Valor Total");
+        lblValorItemTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblValorItemTabela.setForeground(new java.awt.Color(255, 255, 255));
+        lblValorItemTabela.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblValorItemTabela.setText("Valor Item");
 
         lblCodigoTabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCodigoTabela.setForeground(new java.awt.Color(255, 255, 255));
@@ -323,7 +326,7 @@ public class PedidoView extends javax.swing.JFrame {
                         .addGap(66, 66, 66)
                         .addComponent(lblQuantidadeTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
-                        .addComponent(lblValorTotalTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblValorItemTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))
                     .addComponent(btnInserirCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConcluirVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -373,7 +376,7 @@ public class PedidoView extends javax.swing.JFrame {
                             .addComponent(lblProdutoTabela)
                             .addComponent(lblQuantidadeTabela)
                             .addComponent(lblCodigoTabela)
-                            .addComponent(lblValorTotalTabela))
+                            .addComponent(lblValorItemTabela))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrollTblPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -450,6 +453,8 @@ public class PedidoView extends javax.swing.JFrame {
                     valorItemFormatado
                 });
 
+                atualizarValorTotal();
+
                 DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
                 centralizado.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -457,9 +462,8 @@ public class PedidoView extends javax.swing.JFrame {
                 for (int i = 0; i < tblPedido.getColumnCount(); i++) {
                     tblPedido.getColumnModel().getColumn(i).setCellRenderer(centralizado);
                 }
-                
-                tblPedido.setDefaultEditor(Object.class, null);
 
+                tblPedido.setDefaultEditor(Object.class, null);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado.");
@@ -488,6 +492,7 @@ public class PedidoView extends javax.swing.JFrame {
             // Fecha a tela atual (assumindo que está em TelaVenda, por exemplo)
             this.dispose();
         }
+
 
     }//GEN-LAST:event_btnConcluirVendaActionPerformed
 
@@ -566,6 +571,25 @@ public class PedidoView extends javax.swing.JFrame {
         });
     }
 
+    private void atualizarValorTotal() {
+        double soma = 0.0;
+
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPedido.getModel();
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            String valorItemStr = model.getValueAt(i, 4).toString();
+            valorItemStr = valorItemStr.replace("R$", "").replace(",", ".").trim();
+            try {
+                soma += Double.parseDouble(valorItemStr);
+            } catch (NumberFormatException ex) {
+                System.out.println("Erro ao converter valor: " + valorItemStr);
+            }
+        }
+
+        btnConcluirVenda.setText("Concluir Venda (R$ " + String.format("%.2f", soma).replace(".", ",") + ")");
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JButton btnConcluirVenda;
@@ -582,7 +606,7 @@ public class PedidoView extends javax.swing.JFrame {
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblQuantidadeTabela;
     private javax.swing.JLabel lblValorItem;
-    private javax.swing.JLabel lblValorTotalTabela;
+    private javax.swing.JLabel lblValorItemTabela;
     private javax.swing.JLabel lblValorUnitario;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JScrollPane scrollTblPedido;

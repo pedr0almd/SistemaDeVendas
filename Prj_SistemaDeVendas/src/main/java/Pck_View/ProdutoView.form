@@ -41,8 +41,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,32 +63,19 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblAdicionarProduto" min="-2" pref="317" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnVoltar" min="-2" pref="161" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
-                          <Component id="lblItemTabela1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
-                          <Component id="lblItemTabela2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
-                          <Component id="lblItemTabela3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
-                          <Component id="lblItemTabela" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblAdicionarProduto" min="-2" pref="317" max="-2" attributes="0"/>
+                              <Component id="btnVoltar" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="909" max="-2" attributes="0"/>
+                              <Component id="jScrollProdutoTabela" min="-2" pref="909" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="537" max="-2" attributes="0"/>
                                   <Component id="btnAlterar" min="-2" pref="115" max="-2" attributes="0"/>
@@ -100,7 +87,18 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="79" max="32767" attributes="0"/>
+                  <EmptySpace pref="59" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="lblItemTabela1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
+                  <Component id="lblItemTabela2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
+                  <Component id="lblItemTabela3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="lblItemTabela" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -117,7 +115,7 @@
                       <Component id="lblItemTabela1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="367" max="-2" attributes="0"/>
+                  <Component id="jScrollProdutoTabela" min="-2" pref="367" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnAdicionar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
@@ -145,7 +143,7 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="jScrollProdutoTabela">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
@@ -156,7 +154,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="// Estilo geral da tabela&#xa;    tblProduto.setFont(new Font(&quot;Segoe UI&quot;, Font.PLAIN, 14));&#xa;    tblProduto.setRowHeight(30);&#xa;    tblProduto.setShowGrid(false);&#xa;    tblProduto.setIntercellSpacing(new Dimension(0, 0));&#xa;    tblProduto.setSelectionBackground(new Color(0x28, 0x2A, 0x35));&#xa;    tblProduto.setSelectionForeground(Color.BLACK);&#xa;&#xa;    tblProduto.setTableHeader(null);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="// Estilo geral da tabela&#xa;    tblProduto.setFont(new Font(&quot;Segoe UI&quot;, Font.PLAIN, 14));&#xa;    tblProduto.setRowHeight(30);&#xa;    tblProduto.setShowGrid(false);&#xa;    tblProduto.setIntercellSpacing(new Dimension(0, 0));&#xa;    tblProduto.setSelectionBackground(new Color(0x55, 0x51, 0x4A));&#xa;    tblProduto.setSelectionForeground(Color.WHITE);&#xa;&#xa;    tblProduto.setTableHeader(null);"/>
               </AuxValues>
             </Component>
           </SubComponents>

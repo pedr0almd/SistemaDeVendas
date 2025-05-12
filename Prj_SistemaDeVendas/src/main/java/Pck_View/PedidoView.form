@@ -128,7 +128,7 @@
                           <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                           <Component id="lblQuantidadeTabela" min="-2" pref="65" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="lblValorTotalTabela" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="lblValorItemTabela" min="-2" pref="75" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <Component id="btnInserirCliente" alignment="1" min="-2" pref="129" max="-2" attributes="0"/>
@@ -189,7 +189,7 @@
                               <Component id="lblProdutoTabela" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblQuantidadeTabela" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblCodigoTabela" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblValorTotalTabela" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblValorItemTabela" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scrollTblPedido" min="-2" pref="380" max="-2" attributes="0"/>
@@ -410,7 +410,7 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tblPedido">
               <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="// Estilo geral da tabela&#xa;    tblPedido.setFont(new Font(&quot;Segoe UI&quot;, Font.PLAIN, 14));&#xa;    tblPedido.setRowHeight(30);&#xa;    tblPedido.setShowGrid(false);&#xa;    tblPedido.setIntercellSpacing(new Dimension(0, 0));&#xa;    tblPedido.setSelectionBackground(new Color(0x28, 0x2A, 0x35));&#xa;    tblPedido.setSelectionForeground(Color.BLACK);&#xa;&#xa;    tblPedido.setTableHeader(null);">
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="// Estilo geral da tabela&#xa;    tblPedido.setFont(new Font(&quot;Segoe UI&quot;, Font.PLAIN, 14));&#xa;    tblPedido.setRowHeight(30);&#xa;    tblPedido.setShowGrid(false);&#xa;    tblPedido.setIntercellSpacing(new Dimension(0, 0));&#xa;    tblPedido.setSelectionBackground(new Color(0x55, 0x51, 0x4A));&#xa;    tblPedido.setSelectionForeground(Color.WHITE);&#xa;&#xa;    tblPedido.setTableHeader(null);">
                   <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {},&#xa;    new String [] {&#xa;        &quot;Cod. Item&quot;, &quot;Cod. Produto&quot;, &quot;Descri&#xe7;&#xe3;o&quot;, &quot;Qtde&quot;, &quot;Valor Total&quot;&#xa;    }&#xa;) " type="code"/>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" preCode="// Remove a borda padr&#xe3;o do scroll (opcional, para ficar mais limpo)&#xa;scrollTblPedido.setBorder(BorderFactory.createEmptyBorder());">
@@ -496,7 +496,7 @@
             <Property name="text" type="java.lang.String" value="Quantidade"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblValorTotalTabela">
+        <Component class="javax.swing.JLabel" name="lblValorItemTabela">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -505,7 +505,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Valor Total"/>
+            <Property name="text" type="java.lang.String" value="Valor Item"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCodigoTabela">

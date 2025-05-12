@@ -10,7 +10,7 @@ Aplicação simples para o gerenciamento de vendas, com cadastro de clientes, pr
 - Emissão de pedidos de venda (❌)
 - Inclusão de itens nos pedidos (❌)
 - Lista de itens no pedido (❌)
-- Cálculo automático do valor total do pedido (❌)
+- Cálculo automático do valor total do pedido (✔️)
 - Listagem, atualização e exclusão de registros (❌)
 - Emissão de nota não-fiscal (❌)
 - Integração com banco de dados usando JDBC (✔️)

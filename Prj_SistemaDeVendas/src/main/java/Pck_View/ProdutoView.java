@@ -40,7 +40,7 @@ public class ProdutoView extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         lblAdicionarProduto = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollProdutoTabela = new javax.swing.JScrollPane();
         tblProduto = new javax.swing.JTable();
         btnVoltar = new javax.swing.JToggleButton();
         btnApagar = new javax.swing.JToggleButton();
@@ -88,11 +88,11 @@ public class ProdutoView extends javax.swing.JFrame {
         tblProduto.setRowHeight(30);
         tblProduto.setShowGrid(false);
         tblProduto.setIntercellSpacing(new Dimension(0, 0));
-        tblProduto.setSelectionBackground(new Color(0x28, 0x2A, 0x35));
-        tblProduto.setSelectionForeground(Color.BLACK);
+        tblProduto.setSelectionBackground(new Color(0x55, 0x51, 0x4A));
+        tblProduto.setSelectionForeground(Color.WHITE);
 
         tblProduto.setTableHeader(null);
-        jScrollPane1.setViewportView(tblProduto);
+        jScrollProdutoTabela.setViewportView(tblProduto);
 
         btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnVoltar.setText("Voltar");
@@ -172,27 +172,16 @@ public class ProdutoView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(lblItemTabela1)
-                        .addGap(186, 186, 186)
-                        .addComponent(lblItemTabela2)
-                        .addGap(179, 179, 179)
-                        .addComponent(lblItemTabela3)
-                        .addGap(166, 166, 166)
-                        .addComponent(lblItemTabela))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollProdutoTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(537, 537, 537)
                                 .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +189,17 @@ public class ProdutoView extends javax.swing.JFrame {
                                 .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(lblItemTabela1)
+                .addGap(188, 188, 188)
+                .addComponent(lblItemTabela2)
+                .addGap(174, 174, 174)
+                .addComponent(lblItemTabela3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblItemTabela)
+                .addGap(127, 127, 127))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +213,7 @@ public class ProdutoView extends javax.swing.JFrame {
                     .addComponent(lblItemTabela2)
                     .addComponent(lblItemTabela1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollProdutoTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,8 +230,8 @@ public class ProdutoView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +306,7 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JToggleButton btnVoltar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollProdutoTabela;
     private javax.swing.JLabel lblAdicionarProduto;
     private javax.swing.JLabel lblItemTabela;
     private javax.swing.JLabel lblItemTabela1;
