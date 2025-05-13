@@ -31,8 +31,8 @@ public class ClienteControl {
     }
 
 
-    public void removerCliente(String cpf) throws SQLException {
+    public void removerCliente(String sCpf) throws SQLException {
         ClienteDAO clienteDAO = new ClienteDAO();
-        clienteDAO.excluirCliente(cpf);
+        clienteDAO.removerCliente(sCpf);
     }
 }

@@ -9,7 +9,9 @@ import Pck_Model.ProdutoModel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -252,6 +254,34 @@ public class ProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
+        if (btnApagar.isSelected()) {
+            String input = JOptionPane.showInputDialog(this, "Digite o código do produto:");
+
+            try {
+                int codigo = Integer.parseInt(input.trim());
+
+                ProdutoDAO dao = new ProdutoDAO();
+                ProdutoModel produto = dao.buscarProdutoPorCodigo(codigo);
+
+                if (produto != null) {
+                    int confirm = JOptionPane.showConfirmDialog(this,
+                            "Produto encontrado: " + produto.getA03_descricao() + ". Deseja apagar?",
+                            "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
+
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        dao.deletarProduto(codigo); // método correto
+                        JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Produto não encontrado.");
+                }
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Código inválido. Digite um número inteiro.");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Erro ao acessar o banco de dados: " + e.getMessage());
+            }
+        }
 
     }//GEN-LAST:event_btnApagarActionPerformed
 
@@ -336,10 +366,9 @@ public class ProdutoView extends javax.swing.JFrame {
             }
 
             tblProduto.setModel(modelo);
-        
+
             DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
 
             for (int i = 0; i < tblProduto.getColumnCount(); i++) {
                 tblProduto.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);

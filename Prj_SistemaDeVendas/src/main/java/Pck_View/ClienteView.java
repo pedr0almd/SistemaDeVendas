@@ -4,6 +4,7 @@
  */
 package Pck_View;
 
+import Pck_Control.ClienteControl;
 import Pck_DAO.ClienteDAO;
 import Pck_Model.ClienteModel;
 import java.awt.Color;
@@ -11,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -264,7 +266,7 @@ public class ClienteView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-
+        
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
@@ -365,17 +367,15 @@ public class ClienteView extends javax.swing.JFrame {
             tblCliente.setModel(modelo);
             tblCliente.setDefaultEditor(Object.class, null);
 
-
             DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
 
             for (int i = 0; i < tblCliente.getColumnCount(); i++) {
                 tblCliente.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
             }
 
         } catch (Exception e) {
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
     }
 }

@@ -52,11 +52,11 @@ public class ClienteDAO {
     }
 
     // ✅ Remover cliente por CPF usando procedure
-    public void excluirCliente(String cpf) throws SQLException {
+    public void removerCliente(String sCpf) throws SQLException {
         CallableStatement stmt = null;
         try {
             stmt = connection.prepareCall("CALL Proc_DelCLIENTE(?)");
-            stmt.setString(1, cpf);
+            stmt.setString(1, sCpf);
             stmt.execute();
             System.out.println("Cliente excluído com sucesso!");
         } catch (SQLException e) {
