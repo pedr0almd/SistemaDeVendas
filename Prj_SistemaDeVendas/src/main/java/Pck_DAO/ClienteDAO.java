@@ -10,10 +10,10 @@ public class ClienteDAO {
     private final Connection connection;
 
     public ClienteDAO() throws SQLException {
-        this.connection = new ConexaoMySql().getConnection();
+        this.connection = new ConexaoMySQL().getConnection();
     }
 
-    // Método para inserir um cliente usando procedure
+    // Inserir cliente usando procedure
     public void inserirCliente(ClienteModel cliente) throws SQLException {
         CallableStatement stmt = null;
         try {
@@ -28,11 +28,45 @@ public class ClienteDAO {
         } catch (SQLException e) {
             throw new SQLException("Erro ao inserir cliente: " + e.getMessage());
         } finally {
-            fecharRecursos(null, stmt, null);
+            fecharRecursos(null, stmt);
         }
     }
 
-    // Método para listar todos os clientes
+    // Atualizar cliente usando procedure
+    public void atualizarCliente(ClienteModel cliente) throws SQLException {
+        CallableStatement stmt = null;
+        try {
+            stmt = connection.prepareCall("CALL Proc_UpdCLIENTE(?, ?, ?, ?, ?)");
+            stmt.setInt(1, cliente.getA01_codigo());
+            stmt.setString(2, cliente.getA01_nome());
+            stmt.setString(3, cliente.getA01_endereco());
+            stmt.setString(4, cliente.getA01_telefone());
+            stmt.setDouble(5, cliente.getA01_credito());
+            stmt.execute();
+            System.out.println("Cliente atualizado com sucesso!");
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao atualizar cliente: " + e.getMessage());
+        } finally {
+            fecharRecursos(null, stmt);
+        }
+    }
+
+    // ✅ Remover cliente por CPF usando procedure
+    public void excluirCliente(String cpf) throws SQLException {
+        CallableStatement stmt = null;
+        try {
+            stmt = connection.prepareCall("CALL Proc_DelCLIENTE(?)");
+            stmt.setString(1, cpf);
+            stmt.execute();
+            System.out.println("Cliente excluído com sucesso!");
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao excluir cliente: " + e.getMessage());
+        } finally {
+            fecharRecursos(null, stmt);
+        }
+    }
+
+    // Listar clientes
     public List<ClienteModel> listarClientes() throws SQLException {
         List<ClienteModel> lista = new ArrayList<>();
         PreparedStatement stmt = null;
@@ -55,38 +89,21 @@ public class ClienteDAO {
         } catch (SQLException e) {
             throw new SQLException("Erro ao listar clientes: " + e.getMessage());
         } finally {
-            fecharRecursos(rs, stmt, null);
+            fecharRecursos(rs, stmt);
         }
 
         return lista;
     }
 
-    // ✅ Novo método para excluir cliente por CPF usando procedure
-    public void excluirClientePorCpf(String cpf) throws SQLException {
-        CallableStatement stmt = null;
-        try {
-            stmt = connection.prepareCall("CALL Proc_DelCLIENTE(?)");
-            stmt.setString(1, cpf);
-            stmt.execute();
-            System.out.println("Cliente excluído com sucesso!");
-        } catch (SQLException e) {
-            throw new SQLException("Erro ao excluir cliente: " + e.getMessage());
-        } finally {
-            fecharRecursos(null, stmt, null);
-        }
-    }
-
-    // Método auxiliar para fechar recursos
-    private void fecharRecursos(ResultSet rs, Statement stmt, Connection conn) {
+    // Fechar recursos auxiliares
+    private void fecharRecursos(ResultSet rs, Statement stmt) {
         try { if (rs != null) rs.close(); } catch (Exception e) { e.printStackTrace(); }
         try { if (stmt != null) stmt.close(); } catch (Exception e) { e.printStackTrace(); }
-        try { if (conn != null && !conn.isClosed()) conn.close(); } catch (Exception e) { e.printStackTrace(); }
     }
 
-    // Se quiser, pode adicionar aqui um método para fechar explicitamente a conexão
+    // Fechar conexão
     public void fecharConexao() {
         try { if (connection != null && !connection.isClosed()) connection.close(); } 
         catch (SQLException e) { e.printStackTrace(); }
     }
-
 }

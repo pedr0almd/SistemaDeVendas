@@ -10,7 +10,7 @@ public class PedidoDAO {
     private Connection connection;
 
     public PedidoDAO() throws SQLException {
-        this.connection = new ConexaoMySql().getConnection();
+        this.connection = new ConexaoMySQL().getConnection();
     }
 
     // Inserir Pedido

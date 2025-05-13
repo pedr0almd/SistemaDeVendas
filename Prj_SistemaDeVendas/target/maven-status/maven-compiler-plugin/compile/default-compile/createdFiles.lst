@@ -10,7 +10,6 @@ Pck_View\PedidoView.class
 Pck_View\PedidoView$3.class
 Pck_View\ClienteView$3.class
 Pck_View\MenuView$1.class
-Pck_DAO\ConexaoMySql.class
 Pck_View\CadastrarClienteView$4.class
 Pck_View\ProdutoView$6.class
 Pck_View\PedidoView$9.class
@@ -25,6 +24,7 @@ Pck_Control\ClienteControl.class
 Pck_View\MenuView$2.class
 Pck_Model\PedidoModel.class
 Pck_View\PedidoView$10.class
+Pck_DAO\ConexaoMySQL.class
 Pck_View\CadastrarClienteView$5.class
 Pck_View\CriarProdutoView$1.class
 Pck_View\MenuView.class
@@ -33,6 +33,7 @@ Pck_DAO\ItemDAO.class
 Pck_View\CadastrarClienteView$1.class
 Pck_View\PedidoView$5.class
 Pck_View\PedidoView$1.class
+Pck_View\PedidoView$13.class
 Pck_View\PedidoView$8.class
 Pck_View\CadastrarClienteView$2.class
 Pck_View\ProdutoView.class

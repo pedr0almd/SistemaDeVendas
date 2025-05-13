@@ -1,13 +1,11 @@
 package Pck_Model;
 
-
 public class ProdutoModel {
 
     private int a03_codigo;
     private String a03_descricao;
     private double a03_valorUnitario;
-    private String a03_estoque; /*Revisar*/
-
+    private int a03_estoque; // Agora como inteiro
 
     public int getA03_codigo() {
         return a03_codigo;
@@ -33,12 +31,12 @@ public class ProdutoModel {
         this.a03_valorUnitario = a03_valorUnitario;
     }
 
-    public String getA03_estoque() {
+    public int getA03_estoque() {
         return a03_estoque;
     }
 
-    public void setA03_estoque(String a03_estoque) {
+    public void setA03_estoque(int a03_estoque) {
         this.a03_estoque = a03_estoque;
     }
-    
 }
+

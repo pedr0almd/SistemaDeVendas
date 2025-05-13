@@ -1,5 +1,6 @@
 package Pck_View;
 
+import Pck_Control.ClienteControl;
 import Pck_DAO.ClienteDAO;
 import Pck_Model.ClienteModel;
 import java.awt.Color;
@@ -241,28 +242,47 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
         try {
             // Captura os dados da tela
-            String nomeCompleto = tfNomeCompleto.getText();
-            String endereco = tfEndereco.getText();
-            String telefone = tfTelefone.getText();
-            String cpf = tfCPF.getText();
-            double credito = Double.parseDouble(tfCredito.getText());
+            String sNome = tfNomeCompleto.getText().trim();
+            String sEndereco = tfEndereco.getText().trim();
+            String sTelefone = tfTelefone.getText().trim();
+            String sCpf = tfCPF.getText().trim();
+            String sCredito = tfCredito.getText().trim();
 
-            // Cria o modelo
-            ClienteModel cliente = new ClienteModel();
-            cliente.setA01_nome(nomeCompleto);
-            cliente.setA01_endereco(endereco);
-            cliente.setA01_telefone(telefone);
-            cliente.setA01_cpf(cpf);
-            cliente.setA01_credito(credito);
+            // Validação básica para campos obrigatórios
+            if (sNome.isEmpty() || sEndereco.isEmpty() || sTelefone.isEmpty() || sCpf.isEmpty() || sCredito.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos.");
+                return;
+            }
 
-            // Cria o DAO e chama o método de inserção
-            ClienteDAO clienteDAO = new ClienteDAO();
-            clienteDAO.inserirCliente(cliente);
+            // Validação de formato de CPF (apenas números e 11 caracteres)
+            if (!sCpf.matches("\\d{11}")) {
+                JOptionPane.showMessageDialog(this, "CPF inválido. Digite apenas os 11 números.");
+                return;
+            }
 
-            JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!");
+            // Validação de Crédito (verifica se é um número válido)
+            double dCredito = 0;
+            try {
+                dCredito = Double.parseDouble(sCredito);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Crédito deve ser um número válido.");
+                return;
+            }
 
-        } catch (HeadlessException | NumberFormatException | SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir cliente: " + ex.getMessage());
+            // Cria um objeto ClienteControl para realizar a inserção
+            ClienteControl control = new ClienteControl();
+            control.inserirCliente(sNome, sEndereco, sTelefone, sCpf, dCredito);
+
+            // Mensagem de sucesso
+            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            // Redireciona para a tela de cadastros
+            this.setVisible(false);
+            new ClienteView().setVisible(true);
+            
+        } catch (Exception e) {
+            // Exibe qualquer erro de exceção
+            JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
         }
 
 
@@ -291,16 +311,24 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastrarClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastrarClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastrarClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastrarClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

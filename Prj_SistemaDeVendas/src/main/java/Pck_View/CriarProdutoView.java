@@ -4,6 +4,7 @@
  */
 package Pck_View;
 
+import Pck_Control.ProdutoControl;
 import Pck_DAO.ClienteDAO;
 import Pck_DAO.ProdutoDAO;
 import Pck_Model.ClienteModel;
@@ -82,7 +83,7 @@ public class CriarProdutoView extends javax.swing.JFrame {
         btnInserir.setBackground(new java.awt.Color(51, 153, 255));
         btnInserir.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnInserir.setForeground(new java.awt.Color(255, 255, 255));
-        btnInserir.setText("Salvar");
+        btnInserir.setText(" Salvar (ENTER)");
         btnInserir.setBorderPainted(false);               // Remove borda
         btnInserir.setFocusPainted(false);                // Remove destaque de foco
         btnInserir.setContentAreaFilled(false);           // Remove preenchimento padrão
@@ -94,7 +95,7 @@ public class CriarProdutoView extends javax.swing.JFrame {
         });
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText(" Cancelar (ESC)");
         btnCancelar.setBackground(Color.WHITE);            // Fundo branco
         btnCancelar.setForeground(Color.BLACK);            // Cor do texto (pode ser branco se quiser invisível)
         btnCancelar.setBorderPainted(false);               // Remove borda
@@ -204,27 +205,23 @@ public class CriarProdutoView extends javax.swing.JFrame {
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
         try {
-            // Captura e converte os dados da tela
-            int codigoProduto = Integer.parseInt(tfCodigoProduto.getText());
-            String descricao = tfDescricao.getText();
-            String estoque = tfEstoque.getText();
-            double valorUnitario = Double.parseDouble(tfValorUnitario.getText());
+            String sDescricao = tfDescricao.getText();
+            double dValorUnitario = Double.parseDouble(tfValorUnitario.getText());
+            int iEstoque = Integer.parseInt(tfEstoque.getText());
 
-            // Cria o modelo
-            ProdutoModel produto = new ProdutoModel();
-            produto.setA03_codigo(codigoProduto);
-            produto.setA03_descricao(descricao);
-            produto.setA03_estoque(estoque);
-            produto.setA03_valorUnitario(valorUnitario);
-
-            // Cria o DAO e chama o método de inserção
-            ProdutoDAO produtoDAO = new ProdutoDAO();
-            produtoDAO.inserirProduto(produto);
+            ProdutoControl produtoControl = new ProdutoControl();
+            produtoControl.inserirProduto(sDescricao, dValorUnitario, iEstoque);
 
             JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!");
 
-        } catch (HeadlessException | NumberFormatException | SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir produto: " + ex.getMessage());
+            // Redirecionar tela para a tabela
+            this.setVisible(false);
+            new ProdutoView().setVisible(true);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de conversão: " + ex.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro no banco de dados: " + ex.getMessage());
         }
 
     }//GEN-LAST:event_btnInserirActionPerformed

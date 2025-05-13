@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class ConexaoMySql {
+public class ConexaoMySQL {
 
 	public Connection connection = null;
 
@@ -14,7 +14,7 @@ public class ConexaoMySql {
 	private final String LOGIN = "admin";
 	private final String PASSWORD = "mysql@admin2025";
 
-	public ConexaoMySql()
+	public ConexaoMySQL()
 	{};
 
 	public Connection getConnection() throws SQLException {

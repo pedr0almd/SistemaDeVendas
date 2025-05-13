@@ -10,7 +10,7 @@ public class ItemDAO {
     private final Connection connection;
 
     public ItemDAO() throws SQLException {
-        this.connection = new ConexaoMySql().getConnection();
+        this.connection = new ConexaoMySQL().getConnection();
     }
 
     // Inserir Item

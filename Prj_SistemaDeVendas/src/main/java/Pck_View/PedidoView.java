@@ -7,12 +7,16 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicScrollBarUI;
@@ -23,6 +27,19 @@ public class PedidoView extends javax.swing.JFrame {
 
     public PedidoView() {
         initComponents();
+
+        //Atalhos do teclado
+
+        /*Cancelar(ESC)*/
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "cancelar");
+
+        getRootPane().getActionMap().put("cancelar", new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                btnCancelar.doClick();
+            }
+        });
+
     }
 
     @SuppressWarnings("unchecked")
@@ -214,7 +231,7 @@ public class PedidoView extends javax.swing.JFrame {
         });
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Cancelar (ESC)");
         btnCancelar.setBorderPainted(false);               // Remove borda
         btnCancelar.setFocusPainted(false);                // Remove destaque de foco
         btnCancelar.setContentAreaFilled(false);           // Remove preenchimento padrão
