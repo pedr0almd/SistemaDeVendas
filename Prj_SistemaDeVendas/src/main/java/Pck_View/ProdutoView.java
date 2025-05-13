@@ -276,6 +276,8 @@ public class ProdutoView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Produto não encontrado.");
                 }
 
+                carregarTabelaProdutos();
+
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Código inválido. Digite um número inteiro.");
             } catch (SQLException e) {

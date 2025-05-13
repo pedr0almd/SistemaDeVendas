@@ -266,7 +266,31 @@ public class ClienteView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-        
+        if (btnApagar.isSelected()) {
+            String cpf = JOptionPane.showInputDialog(this, "Digite o CPF do cliente:");
+
+            try {
+                // Cria instância do controlador
+                ClienteControl control = new ClienteControl();
+
+                // Exibe confirmação
+                int confirm = JOptionPane.showConfirmDialog(this,
+                        "Deseja realmente apagar o cliente com CPF: " + cpf + "?",
+                        "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    control.removerCliente(cpf);
+                    JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!");
+                }
+
+                carregarTabelaClientes();
+                
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Erro ao excluir cliente: " + e.getMessage());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro inesperado: " + e.getMessage());
+            }
+        }
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
