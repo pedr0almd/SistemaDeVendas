@@ -13,6 +13,10 @@ public class PedidoDAO {
         this.connection = new ConexaoMySQL().getConnection();
     }
 
+    public PedidoDAO(Connection conn) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     // Inserir Pedido
     public void inserirPedido(PedidoModel pedido) throws SQLException {
         String sql = "CALL PROC_InsPEDIDO(?, ?, ?)";

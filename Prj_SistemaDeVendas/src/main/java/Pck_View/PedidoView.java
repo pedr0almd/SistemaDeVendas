@@ -1,6 +1,10 @@
 package Pck_View;
 
+import Pck_Control.ProdutoControl;
+import Pck_DAO.ConexaoMySQL;
+import Pck_DAO.PedidoDAO;
 import Pck_DAO.ProdutoDAO;
+import Pck_Model.PedidoModel;
 import Pck_Model.ProdutoModel;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,6 +12,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -434,7 +439,35 @@ public class PedidoView extends javax.swing.JFrame {
     }//GEN-LAST:event_tfCodigoItemActionPerformed
 
     private void btnConsultarValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarValorActionPerformed
-        javax.swing.JOptionPane.showMessageDialog(this, "Produto: Café Pelé 500g\nDescrição: Quero caféeeee\nPreço: R$100,00\n", "Consultar valor", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            String inputCodigo = JOptionPane.showInputDialog(this, "Digite o código do produto:");
+            if (inputCodigo == null || inputCodigo.trim().isEmpty()) {
+                return;
+            }
+
+            int iCodigo_02 = Integer.parseInt(inputCodigo);
+
+            ProdutoControl control = new ProdutoControl(); 
+            ProdutoModel produto = control.buscarProdutoPorCodigo(iCodigo_02); 
+
+            if (produto != null) {
+                StringBuilder mensagem = new StringBuilder();
+                mensagem.append("Código: ").append(produto.getA03_codigo()).append("\n");
+                mensagem.append("Produto: ").append(produto.getA03_descricao()).append("\n");
+                mensagem.append("Valor unitário: R$ ").append(String.format("%.2f", produto.getA03_valorUnitario())).append("\n");
+                mensagem.append("Estoque: ").append(produto.getA03_estoque()).append(" unidades");
+
+                JOptionPane.showMessageDialog(this, mensagem.toString(), "Informações do Produto", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Produto não encontrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Código inválido.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnConsultarValorActionPerformed
 
     private void btnInserirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirItemActionPerformed
