@@ -284,7 +284,7 @@ public class ClienteView extends javax.swing.JFrame {
                 }
 
                 carregarTabelaClientes();
-                
+
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(this, "Erro ao excluir cliente: " + e.getMessage());
             } catch (Exception e) {
@@ -309,7 +309,39 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = tblCliente.getSelectedRow(); // Verifica se há linha selecionada
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione um cliente para alterar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+// Captura os dados da tabela
+        String cpf = (String) tblCliente.getValueAt(selectedRow, 0); // CPF como chave
+        String nome = (String) tblCliente.getValueAt(selectedRow, 1);
+        String endereco = (String) tblCliente.getValueAt(selectedRow, 2);
+        String telefone = (String) tblCliente.getValueAt(selectedRow, 3);
+        double credito = (double) tblCliente.getValueAt(selectedRow, 4);
+
+// Exibe caixas de diálogo para edição, mantendo CPF fixo
+        String novoNome = JOptionPane.showInputDialog(this, "Nome:", nome);
+        String novoEndereco = JOptionPane.showInputDialog(this, "Endereço:", endereco);
+        String novoTelefone = JOptionPane.showInputDialog(this, "Telefone:", telefone);
+        String novoCreditoStr = JOptionPane.showInputDialog(this, "Crédito:", credito);
+
+        try {
+            double novoCredito = Double.parseDouble(novoCreditoStr);
+
+            ClienteControl clienteControl = new ClienteControl();
+            clienteControl.atualizarCliente(cpf, novoNome, novoEndereco, novoTelefone, novoCredito); // método novo no control
+
+            JOptionPane.showMessageDialog(this, "Cliente alterado com sucesso!");
+            carregarTabelaClientes(); // Atualiza a tabela
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Crédito inválido.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao atualizar cliente: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
@@ -326,16 +358,24 @@ public class ClienteView extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -389,7 +429,9 @@ public class ClienteView extends javax.swing.JFrame {
             }
 
             tblCliente.setModel(modelo);
-            tblCliente.setDefaultEditor(Object.class, null);
+            tblCliente
+                    .setDefaultEditor(Object.class,
+                             null);
 
             DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);

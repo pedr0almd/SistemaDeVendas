@@ -36,16 +36,13 @@ public class ClienteDAO {
     public void atualizarCliente(ClienteModel cliente) throws SQLException {
         CallableStatement stmt = null;
         try {
-            stmt = connection.prepareCall("CALL Proc_UpdCLIENTE(?, ?, ?, ?, ?)");
-            stmt.setInt(1, cliente.getA01_codigo());
-            stmt.setString(2, cliente.getA01_nome());
-            stmt.setString(3, cliente.getA01_endereco());
-            stmt.setString(4, cliente.getA01_telefone());
-            stmt.setDouble(5, cliente.getA01_credito());
+            stmt = connection.prepareCall("CALL PROC_AltCLIENTE(?, ?, ?, ?, ?)");
+            stmt.setString(1, cliente.getA01_nome());
+            stmt.setString(2, cliente.getA01_endereco());
+            stmt.setString(3, cliente.getA01_telefone());
+            stmt.setDouble(4, cliente.getA01_credito());
+            stmt.setString(5, cliente.getA01_cpf());
             stmt.execute();
-            System.out.println("Cliente atualizado com sucesso!");
-        } catch (SQLException e) {
-            throw new SQLException("Erro ao atualizar cliente: " + e.getMessage());
         } finally {
             fecharRecursos(null, stmt);
         }
@@ -97,13 +94,30 @@ public class ClienteDAO {
 
     // Fechar recursos auxiliares
     private void fecharRecursos(ResultSet rs, Statement stmt) {
-        try { if (rs != null) rs.close(); } catch (Exception e) { e.printStackTrace(); }
-        try { if (stmt != null) stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            if (stmt != null) {
+                stmt.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Fechar conexão
     public void fecharConexao() {
-        try { if (connection != null && !connection.isClosed()) connection.close(); } 
-        catch (SQLException e) { e.printStackTrace(); }
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

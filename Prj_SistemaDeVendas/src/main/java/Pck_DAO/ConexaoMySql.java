@@ -11,10 +11,9 @@ public class ConexaoMySQL {
 
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private final String URL = "jdbc:mysql://localhost:3306/DB_SistemaDeVendas?useSSL=false&serverTimezone=UTC";
-	private final String LOGIN = "root";
+	private final String LOGIN = "admin";
 	private final String PASSWORD = "mysql@admin2025";
 
-	public ConexaoMySQL()
 	{};
 
 	public Connection getConnection() throws SQLException {

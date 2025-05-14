@@ -27,7 +27,7 @@ public class ProdutoControl {
         objProdutoModel.setA03_estoque(iEstoque);
 
         ProdutoDAO produtoDAO = new ProdutoDAO();
-        produtoDAO.alterarProduto(objProdutoModel);
+        produtoDAO.atualizarProduto(objProdutoModel);
     }
 
     public void removerProduto(int iCodigo_03) throws SQLException {

@@ -19,8 +19,8 @@ public class ClienteControl {
         clienteDAO.inserirCliente(objClienteModel);
     }
 
-    public void atualizarCliente(int iCodigo_01, String sNome, String sEndereco, String sTelefone, double dCredito) throws SQLException {
-        objClienteModel.setA01_codigo(iCodigo_01);
+    public void atualizarCliente(String sCpf, String sNome, String sEndereco, String sTelefone, double dCredito) throws SQLException {
+        objClienteModel.setA01_cpf(sCpf);
         objClienteModel.setA01_nome(sNome);
         objClienteModel.setA01_endereco(sEndereco);
         objClienteModel.setA01_telefone(sTelefone);
@@ -29,7 +29,6 @@ public class ClienteControl {
         ClienteDAO clienteDAO = new ClienteDAO();
         clienteDAO.atualizarCliente(objClienteModel);
     }
-
 
     public void removerCliente(String sCpf) throws SQLException {
         ClienteDAO clienteDAO = new ClienteDAO();

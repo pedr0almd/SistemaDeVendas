@@ -44,7 +44,7 @@ public class ProdutoDAO {
         return produtos;
     }
 
-    public void alterarProduto(ProdutoModel produto) throws SQLException {
+    public void atualizarProduto(ProdutoModel produto) throws SQLException {
         String sql = "CALL PROC_AltPRODUTO(?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, produto.getA03_codigo());

@@ -42,22 +42,30 @@ CALL PROC_InsCLIENTE('Laura', 'Rua dos beijaflores 34', '11949758634', '36795821
 
 DELIMITER $$
 
+DROP PROCEDURE IF EXISTS PROC_AltCLIENTE$$
+
 CREATE DEFINER='root'@'localhost' PROCEDURE PROC_AltCLIENTE
 (
-    in V_A01_codigo  int,
-    in V_A01_nome  varchar(50),
-    in V_A01_endereco varchar(50),
-    in V_A01_telefone char(11),
-    in V_A01_cpf   char(11),
-    in V_A01_credito  decimal(10,2)  
+    IN V_A01_nome      VARCHAR(50),
+    IN V_A01_endereco  VARCHAR(50),
+    IN V_A01_telefone  CHAR(11),
+    IN V_A01_credito   DECIMAL(10,2),
+    IN V_A01_cpf       CHAR(11)
 )
 BEGIN
-UPDATE CLIENTE_01 
-SET A01_nome= V_A01_nome, A01_endereco= V_A01_endereco, A01_telefone= V_A01_telefone, A01_cpf= V_A01_cpf, A01_credito=V_A01_credito
-WHERE A01_codigo = V_A01_codigo;
+    UPDATE CLIENTE_01 
+    SET 
+        A01_nome     = V_A01_nome,
+        A01_endereco = V_A01_endereco,
+        A01_telefone = V_A01_telefone,
+        A01_credito  = V_A01_credito
+    WHERE A01_cpf = V_A01_cpf;
 
- COMMIT;
+    COMMIT;
 END$$
+
+DELIMITER ;
+
 
 DELIMITER $$
 
@@ -66,7 +74,7 @@ CREATE DEFINER='root'@'localhost' PROCEDURE Proc_DelCLIENTE
     IN V_01_codigo int
 )
 BEGIN
- DELETE FROM cliente_01 WHERE V_01_codigo = A01_codigo;
+ DELETE FROM cliente_01 WHERE V_01_cpf = A01_cpf;
     
     COMMIT;
 END $$
