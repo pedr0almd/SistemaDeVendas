@@ -6,9 +6,10 @@ import java.sql.SQLException;
 
 public class ProdutoControl {
 
-    ProdutoModel objProdutoModel = new ProdutoModel(); 
+    ProdutoModel objProdutoModel = new ProdutoModel();
 
-    public ProdutoControl() {}
+    public ProdutoControl() {
+    }
 
     public void inserirProduto(String sDescricao, double dValorUnitario, int iEstoque) throws SQLException {
         objProdutoModel.setA03_descricao(sDescricao);
@@ -32,5 +33,10 @@ public class ProdutoControl {
     public void removerProduto(int iCodigo_03) throws SQLException {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         produtoDAO.deletarProduto(iCodigo_03);
+    }
+
+    public ProdutoModel buscarProdutoPorCodigo(int iCodigo_03) throws SQLException {
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        return produtoDAO.buscarProdutoPorCodigo(iCodigo_03);
     }
 }
