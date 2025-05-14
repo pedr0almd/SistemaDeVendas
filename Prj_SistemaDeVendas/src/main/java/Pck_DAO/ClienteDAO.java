@@ -5,19 +5,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDAO {
-
+public class ClienteDAO implements AutoCloseable {
     private final Connection connection;
 
+    // Construtor que inicializa a conexão com o banco de dados
     public ClienteDAO() throws SQLException {
         this.connection = new ConexaoMySQL().getConnection();
     }
 
     // Inserir cliente usando procedure
     public void inserirCliente(ClienteModel cliente) throws SQLException {
-        CallableStatement stmt = null;
-        try {
-            stmt = connection.prepareCall("CALL PROC_InsCLIENTE(?, ?, ?, ?, ?)");
+        try (CallableStatement stmt = connection.prepareCall("CALL PROC_InsCLIENTE(?, ?, ?, ?, ?)")) {
             stmt.setString(1, cliente.getA01_nome());
             stmt.setString(2, cliente.getA01_endereco());
             stmt.setString(3, cliente.getA01_telefone());
@@ -27,52 +25,39 @@ public class ClienteDAO {
             System.out.println("Cliente inserido com sucesso!");
         } catch (SQLException e) {
             throw new SQLException("Erro ao inserir cliente: " + e.getMessage());
-        } finally {
-            fecharRecursos(null, stmt);
         }
     }
 
     // Atualizar cliente usando procedure
     public void atualizarCliente(ClienteModel cliente) throws SQLException {
-        CallableStatement stmt = null;
-        try {
-            stmt = connection.prepareCall("CALL PROC_AltCLIENTE(?, ?, ?, ?, ?)");
+        try (CallableStatement stmt = connection.prepareCall("CALL PROC_AltCLIENTE(?, ?, ?, ?, ?)")) {
             stmt.setString(1, cliente.getA01_nome());
             stmt.setString(2, cliente.getA01_endereco());
             stmt.setString(3, cliente.getA01_telefone());
             stmt.setDouble(4, cliente.getA01_credito());
             stmt.setString(5, cliente.getA01_cpf());
             stmt.execute();
-        } finally {
-            fecharRecursos(null, stmt);
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao atualizar cliente: " + e.getMessage());
         }
     }
 
-    // ✅ Remover cliente por CPF usando procedure
+    // Remover cliente por CPF usando procedure
     public void removerCliente(String sCpf) throws SQLException {
-        CallableStatement stmt = null;
-        try {
-            stmt = connection.prepareCall("CALL Proc_DelCLIENTE(?)");
+        try (CallableStatement stmt = connection.prepareCall("CALL Proc_DelCLIENTE(?)")) {
             stmt.setString(1, sCpf);
             stmt.execute();
             System.out.println("Cliente excluído com sucesso!");
         } catch (SQLException e) {
             throw new SQLException("Erro ao excluir cliente: " + e.getMessage());
-        } finally {
-            fecharRecursos(null, stmt);
         }
     }
 
-    // Listar clientes
+    // Listar todos os clientes
     public List<ClienteModel> listarClientes() throws SQLException {
         List<ClienteModel> lista = new ArrayList<>();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        try {
-            stmt = connection.prepareStatement("SELECT * FROM CLIENTE_01");
-            rs = stmt.executeQuery();
-
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM CLIENTE_01");
+             ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 ClienteModel cliente = new ClienteModel();
                 cliente.setA01_codigo(rs.getInt("A01_codigo"));
@@ -85,39 +70,15 @@ public class ClienteDAO {
             }
         } catch (SQLException e) {
             throw new SQLException("Erro ao listar clientes: " + e.getMessage());
-        } finally {
-            fecharRecursos(rs, stmt);
         }
-
         return lista;
     }
 
-    // Fechar recursos auxiliares
-    private void fecharRecursos(ResultSet rs, Statement stmt) {
-        try {
-            if (rs != null) {
-                rs.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            if (stmt != null) {
-                stmt.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Fechar conexão
-    public void fecharConexao() {
-        try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    // Fechar a conexão
+    @Override
+    public void close() throws SQLException {
+        if (connection != null && !connection.isClosed()) {
+            connection.close();
         }
     }
 }

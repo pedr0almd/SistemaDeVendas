@@ -5,14 +5,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutoDAO {
+public class ProdutoDAO implements AutoCloseable {
+    private final Connection connection;
 
-    private Connection connection;
-
+    // Construtor que inicializa a conexão com o banco de dados
     public ProdutoDAO() throws SQLException {
         this.connection = new ConexaoMySQL().getConnection();
     }
 
+    // Inserir produto usando procedure
     public void inserirProduto(ProdutoModel produto) throws SQLException {
         String sql = "CALL PROC_InsPRODUTO(?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -25,6 +26,7 @@ public class ProdutoDAO {
         }
     }
 
+    // Listar todos os produtos
     public List<ProdutoModel> listarProdutos() throws SQLException {
         List<ProdutoModel> produtos = new ArrayList<>();
         String sql = "SELECT * FROM PRODUTO_03";
@@ -44,6 +46,7 @@ public class ProdutoDAO {
         return produtos;
     }
 
+    // Atualizar produto usando procedure
     public void atualizarProduto(ProdutoModel produto) throws SQLException {
         String sql = "CALL PROC_AltPRODUTO(?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -53,10 +56,11 @@ public class ProdutoDAO {
             stmt.setInt(4, produto.getA03_estoque());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new SQLException("Erro ao alterar produto: " + e.getMessage());
+            throw new SQLException("Erro ao atualizar produto: " + e.getMessage());
         }
     }
 
+    // Deletar produto
     public void deletarProduto(int codigo) throws SQLException {
         String sql = "CALL PROC_DelPRODUTO(?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -67,6 +71,7 @@ public class ProdutoDAO {
         }
     }
 
+    // Buscar produto por código
     public ProdutoModel buscarProdutoPorCodigo(int codigo) throws SQLException {
         String sql = "SELECT * FROM PRODUTO_03 WHERE A03_codigo = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -88,13 +93,11 @@ public class ProdutoDAO {
         }
     }
 
-    public void fecharConexao() {
-        try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            System.err.println("Erro ao fechar conexão: " + e.getMessage());
+    // Fechar a conexão
+    @Override
+    public void close() throws SQLException {
+        if (connection != null && !connection.isClosed()) {
+            connection.close();
         }
     }
 }

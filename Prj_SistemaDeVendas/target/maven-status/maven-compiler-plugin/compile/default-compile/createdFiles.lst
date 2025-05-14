@@ -2,6 +2,7 @@ Pck_View\ClienteView$6.class
 Pck_View\CriarProdutoView$3.class
 Pck_View\ProdutoView$2.class
 Pck_View\CadastrarClienteView.class
+Pck_Persistencia\ClientePersistencia.class
 Pck_View\CadastrarClienteView$7.class
 Pck_View\PedidoView$6.class
 Pck_Control\ProdutoControl.class
@@ -56,6 +57,7 @@ Pck_View\CadastrarClienteView$6.class
 Pck_View\PedidoView$12.class
 Pck_View\ClienteView.class
 Pck_View\ProdutoView$5.class
+Pck_Persistencia\ProdutoPersistencia.class
 Pck_View\ClienteView$2.class
 Pck_View\MenuView$3.class
 Pck_View\CadastrarClienteView$3.class
