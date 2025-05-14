@@ -4,6 +4,7 @@
  */
 package Pck_View;
 
+import Pck_Control.ProdutoControl;
 import Pck_DAO.ProdutoDAO;
 import Pck_Model.ProdutoModel;
 import java.awt.Color;
@@ -288,12 +289,37 @@ public class ProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        this.setVisible(false);
-        new MenuView().setVisible(true);
+
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
+    int selectedRow = tblProduto.getSelectedRow(); // Captura a linha selecionada
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Por favor, selecione um produto para alterar.", "Erro", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    // Captura os dados do produto selecionado
+    int codigo = (int) tblProduto.getValueAt(selectedRow, 0);
+    String descricao = (String) tblProduto.getValueAt(selectedRow, 1);
+    double valorUnitario = (double) tblProduto.getValueAt(selectedRow, 2);
+    int estoque = (int) tblProduto.getValueAt(selectedRow, 3);
+    // Exibe um diálogo para o usuário editar os dados
+    String newDescricao = JOptionPane.showInputDialog(this, "Descrição:", descricao);
+    String newValorUnitarioStr = JOptionPane.showInputDialog(this, "Valor Unitário (R$):", valorUnitario);
+    String newEstoqueStr = JOptionPane.showInputDialog(this, "Estoque (UN):", estoque);
+    try {
+        double newValorUnitario = Double.parseDouble(newValorUnitarioStr);
+        int newEstoque = Integer.parseInt(newEstoqueStr);
+        
+        ProdutoControl produtoControl = new ProdutoControl(); 
+        produtoControl.atualizarProduto(codigo, newDescricao, newValorUnitario, newEstoque);
+        JOptionPane.showMessageDialog(this, "Produto alterado com sucesso!");
+        carregarTabelaProdutos(); 
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Por favor, insira valores válidos.", "Erro", JOptionPane.ERROR_MESSAGE);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao alterar produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
