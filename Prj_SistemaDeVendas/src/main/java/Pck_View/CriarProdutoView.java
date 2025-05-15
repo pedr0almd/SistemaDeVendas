@@ -83,7 +83,7 @@ public class CriarProdutoView extends javax.swing.JFrame {
         btnInserir.setBackground(new java.awt.Color(51, 153, 255));
         btnInserir.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnInserir.setForeground(new java.awt.Color(255, 255, 255));
-        btnInserir.setText(" Salvar (ENTER)");
+        btnInserir.setText(" Salvar");
         btnInserir.setBorderPainted(false);               // Remove borda
         btnInserir.setFocusPainted(false);                // Remove destaque de foco
         btnInserir.setContentAreaFilled(false);           // Remove preenchimento padrão
@@ -95,7 +95,7 @@ public class CriarProdutoView extends javax.swing.JFrame {
         });
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnCancelar.setText(" Cancelar (ESC)");
+        btnCancelar.setText(" Cancelar");
         btnCancelar.setBackground(Color.WHITE);            // Fundo branco
         btnCancelar.setForeground(Color.BLACK);            // Cor do texto (pode ser branco se quiser invisível)
         btnCancelar.setBorderPainted(false);               // Remove borda

@@ -34,4 +34,8 @@ public class ClienteControl {
         ClientePersistencia persistencia = new ClientePersistencia();
         persistencia.removerCliente(sCpf);
     }
+
+    public int buscarCodigoClientePorCPF(String cpf) {
+        return ClientePersistencia.buscarCodigoClientePorCPF(cpf);
+    }
 }

@@ -9,17 +9,17 @@ import java.time.LocalDateTime;
 /*REVISAR NO FUTURO*/
 public class ItemModel {
 
-    private int A04_codigo;
+    private long A04_codigo;
     private int A02_codigo;
     private int A03_codigo;
     private double A04_valoritem;
     private int A04_quantidade;
 
-    public int getA04_codigo() {
+    public long getA04_codigo() {
         return A04_codigo;
     }
 
-    public void setA04_codigo(int a04_codigo) {
+    public void setA04_codigo(long a04_codigo) {
         A04_codigo = a04_codigo;
     }
 

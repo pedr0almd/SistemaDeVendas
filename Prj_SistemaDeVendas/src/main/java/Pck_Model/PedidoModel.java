@@ -1,4 +1,5 @@
 package Pck_Model;
+
 import java.time.LocalDate;
 
 public class PedidoModel {
@@ -7,8 +8,9 @@ public class PedidoModel {
     private double      a02_valortotal;
     private LocalDate   a02_data;
     private int         a01_codigo;
-    
-    
+    private String      a02_status;              // novo
+    private LocalDate   a02_dataFinalizacao;     // novo
+
     public int getA02_codigo() {
         return a02_codigo;
     }
@@ -40,5 +42,20 @@ public class PedidoModel {
     public void setA01_codigo(int a01_codigo) {
         this.a01_codigo = a01_codigo;
     }
-    
+
+    public String getA02_status() {
+        return a02_status;
+    }
+
+    public void setA02_status(String a02_status) {
+        this.a02_status = a02_status;
+    }
+
+    public LocalDate getA02_dataFinalizacao() {
+        return a02_dataFinalizacao;
+    }
+
+    public void setA02_dataFinalizacao(LocalDate a02_dataFinalizacao) {
+        this.a02_dataFinalizacao = a02_dataFinalizacao;
+    }
 }

@@ -50,4 +50,14 @@ public class ClientePersistencia {
             return null;
         }
     }
+    
+    // Buscar c´´odigo por cpf
+    public static int buscarCodigoClientePorCPF(String cpf) {
+        try (ClienteDAO dao = new ClienteDAO()) {
+            return dao.buscarCodigoPorCPF(cpf);
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar código do cliente por CPF: " + e.getMessage());
+            return -1;
+        }
+    }
 }

@@ -1,5 +1,8 @@
 package Pck_View;
 
+import Pck_Control.ClienteControl;
+import Pck_Control.ItemControl;
+import Pck_Control.PedidoControl;
 import Pck_Control.ProdutoControl;
 import Pck_DAO.ConexaoMySQL;
 import Pck_DAO.PedidoDAO;
@@ -13,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -30,6 +34,8 @@ import javax.swing.table.JTableHeader;
 
 public class PedidoView extends javax.swing.JFrame {
 
+    private int codigoPedido = -1; // -1 indica que ainda não foi gerado
+
     public PedidoView() {
         initComponents();
 
@@ -45,6 +51,18 @@ public class PedidoView extends javax.swing.JFrame {
             }
         });
 
+    }
+
+    public PedidoView(int codigoPedido) {
+        this.codigoPedido = codigoPedido;
+        initComponents();
+
+        // Se quiser, pode chamar um método para carregar dados do pedido com esse código
+    }
+
+    private double parseValor(String valorFormatado) {
+        valorFormatado = valorFormatado.replace("R$ ", "").replace(".", "").replace(",", ".");
+        return Double.parseDouble(valorFormatado);
     }
 
     @SuppressWarnings("unchecked")
@@ -447,8 +465,8 @@ public class PedidoView extends javax.swing.JFrame {
 
             int iCodigo_02 = Integer.parseInt(inputCodigo);
 
-            ProdutoControl control = new ProdutoControl(); 
-            ProdutoModel produto = control.buscarProdutoPorCodigo(iCodigo_02); 
+            ProdutoControl control = new ProdutoControl();
+            ProdutoModel produto = control.buscarProdutoPorCodigo(iCodigo_02);
 
             if (produto != null) {
                 StringBuilder mensagem = new StringBuilder();
@@ -482,18 +500,20 @@ public class PedidoView extends javax.swing.JFrame {
             if (produto != null) {
                 tfProduto.setText(produto.getA03_descricao());
 
-                // Formata o valor unitário com "R$" e duas casas decimais
+                // Valor unitário formatado
                 String valorUnitarioFormatado = String.format("R$ %.2f", produto.getA03_valorUnitario()).replace(".", ",");
                 tfValorUnitario.setText(valorUnitarioFormatado);
 
-                // Calcula e formata o valor do item (valor unitário x quantidade)
+                // Valor total do item
                 double valorItem = produto.getA03_valorUnitario() * quantidade;
                 String valorItemFormatado = String.format("R$ %.2f", valorItem).replace(".", ",");
                 tfValorItem.setText(valorItemFormatado);
 
-                tfCodigoItem.setText(String.valueOf(System.currentTimeMillis()));
+                // Código único do item
+                long codigoItem = System.currentTimeMillis();
+                tfCodigoItem.setText(String.valueOf(codigoItem));
 
-                // Insere os dados na tabela
+                // Adiciona na tabela da interface
                 javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPedido.getModel();
                 model.addRow(new Object[]{
                     tfCodigoItem.getText(),
@@ -503,17 +523,16 @@ public class PedidoView extends javax.swing.JFrame {
                     valorItemFormatado
                 });
 
-                atualizarValorTotal();
-
+                // Centraliza colunas
                 DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
                 centralizado.setHorizontalAlignment(SwingConstants.CENTER);
-
-// Aplica o renderizador para todas as colunas
                 for (int i = 0; i < tblPedido.getColumnCount(); i++) {
                     tblPedido.getColumnModel().getColumn(i).setCellRenderer(centralizado);
                 }
-
                 tblPedido.setDefaultEditor(Object.class, null);
+
+                // Atualiza total
+                atualizarValorTotal();
 
             } else {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado.");
@@ -524,26 +543,46 @@ public class PedidoView extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar produto: " + e.getMessage());
         }
-
-
     }//GEN-LAST:event_btnInserirItemActionPerformed
 
     private void btnConcluirVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirVendaActionPerformed
-        int resposta = JOptionPane.showConfirmDialog(this,
-                "Venda finalizada com sucesso! Deseja iniciar outra venda?",
-                "Venda Finalizada",
-                JOptionPane.YES_NO_OPTION);
+        try {
+            ItemControl itemControl = new ItemControl();
+            PedidoControl pedidoControl = new PedidoControl();
 
-// Se o usuário clicar "Não" (valor retornado é JOptionPane.NO_OPTION)
-        if (resposta == JOptionPane.NO_OPTION) {
-            // Abre o menu
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPedido.getModel();
+            double valorTotal = 0;
+
+            // Percorre os itens da tabela e insere no banco
+            for (int i = 0; i < model.getRowCount(); i++) {
+                // Remove o uso de codigoItem
+                int codigoProduto = Integer.parseInt(model.getValueAt(i, 1).toString());
+                int quantidade = Integer.parseInt(model.getValueAt(i, 3).toString());
+                double valorItem = parseValor(model.getValueAt(i, 4).toString());
+
+                // Soma ao valor total
+                valorTotal += valorItem;
+
+                // Insere item no banco (sem o código do item)
+                itemControl.inserirItem(codigoProduto, codigoPedido, quantidade, valorItem);
+            }
+
+            // Atualiza o valor total do pedido no banco
+            pedidoControl.atualizarValorTotal(codigoPedido, valorTotal);
+
+            // Finaliza o pedido
+            pedidoControl.finalizarPedido(codigoPedido);
+
+            // Mostra mensagem de sucesso
+            JOptionPane.showMessageDialog(this, "Venda finalizada com sucesso!");
+
+            // Retorna ao menu principal
             new MenuView().setVisible(true);
-
-            // Fecha a tela atual (assumindo que está em TelaVenda, por exemplo)
             this.dispose();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao concluir venda: " + e.getMessage());
         }
-
-
     }//GEN-LAST:event_btnConcluirVendaActionPerformed
 
     private void tfValorUnitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValorUnitarioActionPerformed
@@ -555,6 +594,21 @@ public class PedidoView extends javax.swing.JFrame {
     }//GEN-LAST:event_tfProdutoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        try {
+            Connection con = new ConexaoMySQL().getConnection(); // sua classe de conexão
+            String sql = "CALL PROC_DelPEDIDO(?)";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, codigoPedido); // Usa o atributo já existente
+            stmt.execute();
+            stmt.close();
+            con.close();
+
+            JOptionPane.showMessageDialog(null, "Pedido cancelado com sucesso!");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao cancelar o pedido: " + ex.getMessage());
+        }
+
         this.setVisible(false);
         new MenuView().setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -564,7 +618,24 @@ public class PedidoView extends javax.swing.JFrame {
     }//GEN-LAST:event_tblPedidoAncestorAdded
 
     private void btnInserirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirClienteActionPerformed
-        // TODO add your handling code here:
+        String cpf = JOptionPane.showInputDialog(this, "Informe o CPF do cliente:");
+        if (cpf == null || cpf.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "CPF é obrigatório.");
+            return;
+        }
+
+        ClienteControl clienteControl = new ClienteControl();
+        int codigoCliente = clienteControl.buscarCodigoClientePorCPF(cpf);
+
+        if (codigoCliente == -1) {
+            JOptionPane.showMessageDialog(this, "Cliente não encontrado para o CPF informado.");
+            return;
+        }
+
+// Agora você pode usar esse codigoCliente para algo, como iniciar um pedido, etc.
+        JOptionPane.showMessageDialog(this, "Cliente encontrado! Código: " + codigoCliente);
+
+
     }//GEN-LAST:event_btnInserirClienteActionPerformed
 
     private void tfValorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValorItemActionPerformed

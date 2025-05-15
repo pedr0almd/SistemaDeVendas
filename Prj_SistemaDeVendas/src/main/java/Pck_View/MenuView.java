@@ -1,18 +1,19 @@
 package Pck_View;
 
+import Pck_Control.PedidoControl;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 public class MenuView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaMenu
-     */
+    private int codigoPedido;
+
     public MenuView() {
         initComponents();
-       // setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         /*Icone do Botão iniciar venda*/
         ImageIcon iconeProduto = new ImageIcon(getClass().getResource("/imagens/carrinho-de-compras.png"));
@@ -167,8 +168,23 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnIniciarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarVendaActionPerformed
-        this.setVisible(false);
-        new PedidoView().setVisible(true);
+
+        try {
+            // Inicia pedido com cliente 0 ou um valor padrão (cliente ainda não definido)
+            PedidoControl pedidoControl = new PedidoControl();
+            int codigoPedido = pedidoControl.iniciarNovoPedido(0); // cliente = 0 ou valor que represente "sem cliente"
+
+            if (codigoPedido != -1) {
+                JOptionPane.showMessageDialog(this, "Pedido iniciado! Código: " + codigoPedido);
+                this.setVisible(false);
+                new PedidoView(codigoPedido).setVisible(true); // abre a tela do pedido
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao iniciar pedido.");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro inesperado: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnIniciarVendaActionPerformed
 
     /**
@@ -185,16 +201,24 @@ public class MenuView extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

@@ -29,6 +29,7 @@ Pck_DAO\ConexaoMySQL.class
 Pck_View\CadastrarClienteView$5.class
 Pck_View\CriarProdutoView$1.class
 Pck_View\MenuView.class
+Pck_Persistencia\PedidoPersistencia.class
 Pck_View\ClienteView$1.class
 Pck_DAO\ItemDAO.class
 Pck_View\CadastrarClienteView$1.class
@@ -47,6 +48,7 @@ Pck_View\CriarProdutoView$2.class
 Pck_Control\ItemControl.class
 Pck_Model\ClienteModel.class
 Pck_View\ProdutoView$1.class
+Pck_Persistencia\ItemPersistencia.class
 Pck_View\ClienteView$5.class
 Pck_Model\ItemModel.class
 Pck_DAO\PedidoDAO.class

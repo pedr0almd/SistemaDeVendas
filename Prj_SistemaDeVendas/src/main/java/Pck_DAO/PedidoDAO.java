@@ -7,33 +7,53 @@ import java.util.List;
 
 public class PedidoDAO {
 
-    private Connection connection;
+    private final Connection connection;
 
     public PedidoDAO() throws SQLException {
         this.connection = new ConexaoMySQL().getConnection();
     }
 
-    public PedidoDAO(Connection conn) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // Inserir pedido e retornar o ID gerado
+    public int inserirPedidoRetornandoId(PedidoModel pedido) throws SQLException {
+        String sql = "INSERT INTO PEDIDO_02 (A02_data, A02_valortotal, A01_codigo) VALUES (?, ?, ?)";
+        try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setDate(1, Date.valueOf(pedido.getA02_data()));
+            stmt.setDouble(2, pedido.getA02_valortotal());
+
+            if (pedido.getA01_codigo() > 0) {
+                stmt.setInt(3, pedido.getA01_codigo()); // Cliente existente
+            } else {
+                stmt.setNull(3, java.sql.Types.INTEGER); // Cliente ainda não informado
+            }
+
+            stmt.executeUpdate();
+
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                } else {
+                    throw new SQLException("Falha ao obter o ID do pedido.");
+                }
+            }
+        }
     }
 
-    // Inserir Pedido
+    // Inserir pedido (sem retorno do ID) - ainda útil em alguns casos
     public void inserirPedido(PedidoModel pedido) throws SQLException {
         String sql = "CALL PROC_InsPEDIDO(?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(pedido.getA02_data()));
             stmt.setDouble(2, pedido.getA02_valortotal());
-            stmt.setInt(3, pedido.getA01_codigo());  // Cliente associado
+            stmt.setInt(3, pedido.getA01_codigo());
             stmt.executeUpdate();
         }
     }
 
-    // Listar Pedidos
+    // Listar todos os pedidos
     public List<PedidoModel> listarPedidos() throws SQLException {
         List<PedidoModel> pedidos = new ArrayList<>();
         String sql = "SELECT * FROM PEDIDO_02";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 PedidoModel pedido = new PedidoModel();
                 pedido.setA02_codigo(rs.getInt("A02_codigo"));
@@ -46,7 +66,7 @@ public class PedidoDAO {
         return pedidos;
     }
 
-    // Alterar Pedido
+    // Alterar pedido existente
     public void alterarPedido(PedidoModel pedido) throws SQLException {
         String sql = "CALL PROC_AltPEDIDO(?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -58,7 +78,7 @@ public class PedidoDAO {
         }
     }
 
-    // Deletar Pedido
+    // Deletar pedido
     public void deletarPedido(int codigo) throws SQLException {
         String sql = "CALL PROC_DelPEDIDO(?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -67,7 +87,7 @@ public class PedidoDAO {
         }
     }
 
-    // Buscar Pedido por Código
+    // Buscar um pedido específico por código
     public PedidoModel buscarPedidoPorCodigo(int codigo) throws SQLException {
         String sql = "SELECT * FROM PEDIDO_02 WHERE A02_codigo = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -79,11 +99,37 @@ public class PedidoDAO {
                     pedido.setA02_data(rs.getDate("A02_data").toLocalDate());
                     pedido.setA02_valortotal(rs.getDouble("A02_valortotal"));
                     pedido.setA01_codigo(rs.getInt("A01_codigo"));
+
+                    // NOVOS CAMPOS
+                    pedido.setA02_status(rs.getString("A02_status"));
+                    Date dataFinalizacao = rs.getDate("A02_dataFinalizacao");
+                    if (dataFinalizacao != null) {
+                        pedido.setA02_dataFinalizacao(dataFinalizacao.toLocalDate());
+                    }
+
                     return pedido;
                 } else {
-                    return null; // Nenhum pedido encontrado
+                    return null;
                 }
             }
         }
     }
+
+    public void atualizarValorTotal(int codigoPedido, double valorTotal) throws SQLException {
+        String sql = "UPDATE PEDIDO_02 SET A02_valortotal = ? WHERE A02_codigo = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDouble(1, valorTotal);
+            stmt.setInt(2, codigoPedido);
+            stmt.executeUpdate();
+        }
+    }
+
+    public void finalizarPedido(int codigoPedido) throws SQLException {
+        String sql = "UPDATE pedido_02 SET A02_status = 'FECHADO', A02_dataFinalizacao = NOW() WHERE A02_codigo = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, codigoPedido);
+            stmt.executeUpdate();
+        }
+    }
+
 }

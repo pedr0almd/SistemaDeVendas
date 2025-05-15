@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAO implements AutoCloseable {
+
     private final Connection connection;
 
     // Construtor que inicializa a conexão com o banco de dados
@@ -56,8 +57,7 @@ public class ClienteDAO implements AutoCloseable {
     // Listar todos os clientes
     public List<ClienteModel> listarClientes() throws SQLException {
         List<ClienteModel> lista = new ArrayList<>();
-        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM CLIENTE_01");
-             ResultSet rs = stmt.executeQuery()) {
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM CLIENTE_01"); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 ClienteModel cliente = new ClienteModel();
                 cliente.setA01_codigo(rs.getInt("A01_codigo"));
@@ -72,6 +72,20 @@ public class ClienteDAO implements AutoCloseable {
             throw new SQLException("Erro ao listar clientes: " + e.getMessage());
         }
         return lista;
+    }
+
+    public int buscarCodigoPorCPF(String cpf) throws SQLException {
+        String sql = "SELECT A01_codigo FROM CLIENTE_01 WHERE A01_cpf = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, cpf);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("A01_codigo");
+                } else {
+                    return -1; // cliente não encontrado
+                }
+            }
+        }
     }
 
     // Fechar a conexão
