@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoDAO implements AutoCloseable {
+
     private final Connection connection;
 
     // Construtor que inicializa a conexão com o banco de dados
@@ -30,8 +31,7 @@ public class ProdutoDAO implements AutoCloseable {
     public List<ProdutoModel> listarProdutos() throws SQLException {
         List<ProdutoModel> produtos = new ArrayList<>();
         String sql = "SELECT * FROM PRODUTO_03";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 ProdutoModel produto = new ProdutoModel();
                 produto.setA03_codigo(rs.getInt("A03_codigo"));
@@ -90,6 +90,18 @@ public class ProdutoDAO implements AutoCloseable {
             }
         } catch (SQLException e) {
             throw new SQLException("Erro ao buscar produto por código: " + e.getMessage());
+        }
+    }
+
+    public boolean descontarEstoque(int idProduto, int quantidade) throws SQLException {
+        String sql = "UPDATE PRODUTO_03 SET A03_estoque = CAST(A03_estoque AS SIGNED) - ? WHERE A03_codigo = ? AND CAST(A03_estoque AS SIGNED) >= ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, quantidade);
+            ps.setInt(2, idProduto);
+            ps.setInt(3, quantidade);
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0; // true se desconto foi aplicado
         }
     }
 

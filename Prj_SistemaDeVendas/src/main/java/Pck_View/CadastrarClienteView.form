@@ -78,12 +78,9 @@
                               <Component id="lblCredito" min="-2" max="-2" attributes="0"/>
                               <Component id="tfCredito" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="lblEndereco" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCPF" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="lblCPF" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -151,16 +148,12 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCPFActionPerformed"/>
           </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="// Torna o fundo transparente&#xa;tfCPF.setBackground(new Color(0, 0, 0, 0));  // (R, G, B, A) - A=0 para totalmente transparente&#xa;&#xa;// Define uma borda branca&#xa;tfCPF.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));&#xa;&#xa;// Se voc&#xea; quiser que o texto tamb&#xe9;m tenha cor, defina a cor do texto&#xa;tfCPF.setForeground(Color.WHITE);  // Texto branco"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="tfNomeCompleto">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNomeCompletoActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="// Torna o fundo transparente&#xa;tfNomeCompleto.setBackground(new Color(0, 0, 0, 0));  // (R, G, B, A) - A=0 para totalmente transparente&#xa;&#xa;// Define uma borda branca&#xa;tfNomeCompleto.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));&#xa;&#xa;// Se voc&#xea; quiser que o texto tamb&#xe9;m tenha cor, defina a cor do texto&#xa;tfNomeCompleto.setForeground(Color.WHITE);  // Texto branco"/>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="NewJFrame_NOME"/>
           </AuxValues>
         </Component>

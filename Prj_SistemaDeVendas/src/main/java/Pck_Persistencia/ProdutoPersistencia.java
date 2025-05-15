@@ -3,6 +3,7 @@ package Pck_Persistencia;
 import Pck_DAO.ProdutoDAO;
 import Pck_Model.ProdutoModel;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ProdutoPersistencia {
 
@@ -13,7 +14,6 @@ public class ProdutoPersistencia {
         try {
             produtoDAO = new ProdutoDAO();
         } catch (SQLException e) {
-            // Tratar a exceção adequadamente ou lançar uma RuntimeException
             throw new RuntimeException("Erro ao inicializar o ProdutoDAO", e);
         }
     }
@@ -45,5 +45,15 @@ public class ProdutoPersistencia {
     // Buscar produto por código
     public ProdutoModel buscarProdutoPorCodigo(int codigo) throws SQLException {
         return produtoDAO.buscarProdutoPorCodigo(codigo);
+    }
+
+    // Listar todos os produtos
+    public List<ProdutoModel> listarProdutos() throws SQLException {
+        return produtoDAO.listarProdutos();
+    }
+
+    // Descontar estoque (atualiza o estoque subtraindo a quantidade)
+    public boolean descontarEstoque(int idProduto, int quantidade) throws SQLException {
+        return produtoDAO.descontarEstoque(idProduto, quantidade);
     }
 }

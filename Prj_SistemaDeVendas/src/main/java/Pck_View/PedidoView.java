@@ -549,13 +549,13 @@ public class PedidoView extends javax.swing.JFrame {
         try {
             ItemControl itemControl = new ItemControl();
             PedidoControl pedidoControl = new PedidoControl();
+            ProdutoControl produtoControl = new ProdutoControl();
 
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPedido.getModel();
             double valorTotal = 0;
 
-            // Percorre os itens da tabela e insere no banco
+            // Percorre os itens da tabela e insere no banco e desconta do estoque
             for (int i = 0; i < model.getRowCount(); i++) {
-                // Remove o uso de codigoItem
                 int codigoProduto = Integer.parseInt(model.getValueAt(i, 1).toString());
                 int quantidade = Integer.parseInt(model.getValueAt(i, 3).toString());
                 double valorItem = parseValor(model.getValueAt(i, 4).toString());
@@ -565,6 +565,9 @@ public class PedidoView extends javax.swing.JFrame {
 
                 // Insere item no banco (sem o código do item)
                 itemControl.inserirItem(codigoProduto, codigoPedido, quantidade, valorItem);
+
+                // Desconta do estoque
+                produtoControl.descontarEstoque(codigoProduto, quantidade);
             }
 
             // Atualiza o valor total do pedido no banco
@@ -582,8 +585,7 @@ public class PedidoView extends javax.swing.JFrame {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao concluir venda: " + e.getMessage());
-        }
-    }//GEN-LAST:event_btnConcluirVendaActionPerformed
+        }    }//GEN-LAST:event_btnConcluirVendaActionPerformed
 
     private void tfValorUnitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValorUnitarioActionPerformed
         // TODO add your handling code here:

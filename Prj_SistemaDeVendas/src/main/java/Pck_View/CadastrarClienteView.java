@@ -45,28 +45,12 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         pnlBackground.setBackground(new java.awt.Color(40, 42, 53));
 
         tfCPF.setBorder(null);
-        // Torna o fundo transparente
-        tfCPF.setBackground(new Color(0, 0, 0, 0));  // (R, G, B, A) - A=0 para totalmente transparente
-
-        // Define uma borda branca
-        tfCPF.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
-
-        // Se você quiser que o texto também tenha cor, defina a cor do texto
-        tfCPF.setForeground(Color.WHITE);  // Texto branco
         tfCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCPFActionPerformed(evt);
             }
         });
 
-        // Torna o fundo transparente
-        tfNomeCompleto.setBackground(new Color(0, 0, 0, 0));  // (R, G, B, A) - A=0 para totalmente transparente
-
-        // Define uma borda branca
-        tfNomeCompleto.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
-
-        // Se você quiser que o texto também tenha cor, defina a cor do texto
-        tfNomeCompleto.setForeground(Color.WHITE);  // Texto branco
         tfNomeCompleto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNomeCompletoActionPerformed(evt);
@@ -157,11 +141,9 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCredito)
                             .addComponent(tfCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEndereco))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addComponent(lblCPF)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblEndereco)
+                            .addComponent(lblCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()

@@ -60,6 +60,8 @@ public class ItemDAO {
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setLong(1, codigo);
             stmt.executeUpdate();
+            
+            
         }
     }
 }

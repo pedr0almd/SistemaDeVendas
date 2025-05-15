@@ -3,6 +3,7 @@ package Pck_Control;
 import Pck_Model.ProdutoModel;
 import Pck_Persistencia.ProdutoPersistencia;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ProdutoControl {
 
@@ -33,4 +34,16 @@ public class ProdutoControl {
         return produtoPersistencia.buscarProdutoPorCodigo(iCodigo_03);
     }
 
+    // Listar todos produtos (se precisar)
+    public List<ProdutoModel> listarProdutos() throws SQLException {
+        return produtoPersistencia.listarProdutos();
+    }
+
+    // Descontar estoque após venda
+    public void descontarEstoque(int idProduto, int quantidade) throws SQLException {
+        boolean sucesso = produtoPersistencia.descontarEstoque(idProduto, quantidade);
+        if (!sucesso) {
+            throw new SQLException("Estoque insuficiente para o produto ID: " + idProduto);
+        }
+    }
 }

@@ -24,4 +24,5 @@ public void inserirItem( int iCodigo_03, int iCodigo_02, int iQuantidade, double
         ItemPersistencia persistencia = new ItemPersistencia();
         persistencia.removerItem(objClienteModel);
     }
+    
 }
