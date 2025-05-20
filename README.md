@@ -7,9 +7,9 @@ Aplicação simples para o gerenciamento de vendas, com cadastro de clientes, pr
 
 - Cadastro de clientes (✔️)
 - Cadastro e gerenciamento de produtos (✔️)
-- Emissão de pedidos de venda (❌)
-- Inclusão de itens nos pedidos (❌)
-- Lista de itens no pedido (❌)
+- Emissão de pedidos de venda (✔️)
+- Inclusão de itens nos pedidos (✔️)
+- Lista de itens no pedido (✔️)
 - Cálculo automático do valor total do pedido (✔️)
 - Listagem, atualização e exclusão de registros (✔️)
 - Emissão de nota não-fiscal (❌)
