@@ -1,17 +1,6 @@
 package Pck_View;
 
 import Pck_Control.ClienteControl;
-import Pck_DAO.ClienteDAO;
-import Pck_Model.ClienteModel;
-import java.awt.Color;
-import java.awt.HeadlessException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import static java.time.InstantSource.system;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 public class CadastrarClienteView extends javax.swing.JFrame {

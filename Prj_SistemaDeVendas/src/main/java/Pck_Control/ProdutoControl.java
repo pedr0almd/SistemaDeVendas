@@ -7,43 +7,58 @@ import java.util.List;
 
 public class ProdutoControl {
 
-    private ProdutoPersistencia produtoPersistencia;
-
-    // Construtor que inicializa a persistência
-    public ProdutoControl() {
-        produtoPersistencia = new ProdutoPersistencia();
-    }
-
-    // Inserir produto
+    //01- Inserir produto
     public void inserirProduto(String sDescricao, double dValorUnitario, int iEstoque) throws SQLException {
-        produtoPersistencia.inserirProduto(sDescricao, dValorUnitario, iEstoque);
+        ProdutoModel objProdutoModel = new ProdutoModel();
+        objProdutoModel.setA03_descricao(sDescricao);
+        objProdutoModel.setA03_valorUnitario(dValorUnitario);
+        objProdutoModel.setA03_estoque(iEstoque);
+
+        ProdutoPersistencia persistencia = new ProdutoPersistencia();
+        persistencia.inserirProduto(objProdutoModel);
     }
 
-    // Atualizar produto
-    public void atualizarProduto(int iCodigo_03, String sDescricao, double dValorUnitario, int iEstoque) throws SQLException {
-        produtoPersistencia.atualizarProduto(iCodigo_03, sDescricao, dValorUnitario, iEstoque);
-    }
-
-    // Remover produto
-    public void removerProduto(int iCodigo_03) throws SQLException {
-        produtoPersistencia.removerProduto(iCodigo_03);
-    }
-
-    // Buscar produto por código
-    public ProdutoModel buscarProdutoPorCodigo(int iCodigo_03) throws SQLException {
-        return produtoPersistencia.buscarProdutoPorCodigo(iCodigo_03);
-    }
-
-    // Listar todos produtos (se precisar)
+    //02- Listar produtos
     public List<ProdutoModel> listarProdutos() throws SQLException {
-        return produtoPersistencia.listarProdutos();
+        ProdutoPersistencia persistencia = new ProdutoPersistencia();
+        return persistencia.listarProdutos();
     }
 
-    // Descontar estoque após venda
-    public void descontarEstoque(int idProduto, int quantidade) throws SQLException {
-        boolean sucesso = produtoPersistencia.descontarEstoque(idProduto, quantidade);
-        if (!sucesso) {
-            throw new SQLException("Estoque insuficiente para o produto ID: " + idProduto);
+    //03- Atualizar produto
+    public void atualizarProduto(String sDescricao, double dValorUnitario, int iEstoque) throws SQLException {
+        ProdutoModel objProdutoModel = new ProdutoModel();
+        objProdutoModel.setA03_descricao(sDescricao);
+        objProdutoModel.setA03_valorUnitario(dValorUnitario);
+        objProdutoModel.setA03_estoque(iEstoque);
+
+        ProdutoPersistencia persistencia = new ProdutoPersistencia();
+        persistencia.atualizarProduto(objProdutoModel);
+    }
+
+    //04- Apagar produto
+    public void apagarProduto(int iCodigo_03) throws SQLException {
+        ProdutoPersistencia persistencia = new ProdutoPersistencia();
+        persistencia.apagarProduto(iCodigo_03);
+    }
+
+    //05- Buscar produto por código
+    public ProdutoModel buscarProdutoPorCodigo(int iCodigo_03) throws SQLException {
+        ProdutoPersistencia persistencia = new ProdutoPersistencia();
+        ProdutoModel produto = persistencia.buscarProdutoPorCodigo(iCodigo_03);
+        return produto; 
+    }
+
+    //06- Descontar estoque após venda
+    public String descontarEstoque(int iCodigo_03, int iQuantidade) {
+        try (ProdutoPersistencia persistencia = new ProdutoPersistencia()) {
+            boolean sucesso = persistencia.descontarEstoque(iCodigo_03, iQuantidade);
+            if (sucesso) {
+                return "Estoque atualizado com sucesso!";
+            } else {
+                return "Estoque insuficiente para o produto ID: " + iCodigo_03;
+            }
+        } catch (SQLException e) {
+            return "Erro ao descontar estoque: " + e.getMessage();
         }
     }
 }

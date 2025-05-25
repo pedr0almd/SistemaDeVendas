@@ -1,16 +1,19 @@
 package Pck_Model;
 
+import Pck_Persistencia.PedidoPersistencia;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class PedidoModel {
-    
-    private int         a02_codigo;
-    private double      a02_valortotal;
-    private LocalDate   a02_data;
-    private int         a01_codigo;
-    private String      a02_status;              // novo
-    private LocalDate   a02_dataFinalizacao;     // novo
 
+    private int a02_codigo;
+    private double a02_valortotal;
+    private LocalDate a02_data;
+    private int a01_codigo;
+    private String a02_status;
+    private LocalDate a02_dataFinalizacao;
+
+    //Getters e setters
     public int getA02_codigo() {
         return a02_codigo;
     }
@@ -58,4 +61,5 @@ public class PedidoModel {
     public void setA02_dataFinalizacao(LocalDate a02_dataFinalizacao) {
         this.a02_dataFinalizacao = a02_dataFinalizacao;
     }
+
 }

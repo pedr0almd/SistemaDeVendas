@@ -83,7 +83,7 @@ CREATE DEFINER='root'@'localhost' PROCEDURE PROC_DelCLIENTE (
     IN V_A01_codigo INT
 )
 BEGIN
-    DELETE FROM CLIENTE_01 WHERE A01_codigo = V_A01_codigo;
+    DELETE FROM CLIENTE_01 WHERE A01_cpf = V_A01_cpf;
     COMMIT;
 END$$
 
@@ -181,7 +181,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' PROCEDURE PROC_InsITENS (
+CREATE DEFINER='root'@'localhost' PROCEDURE PROC_InsITEM (
     IN V_A02_codigo INT,
     IN V_A03_codigo INT,
     IN V_A04_quantidade INT,
@@ -193,7 +193,7 @@ BEGIN
     COMMIT;
 END$$
 
-CREATE DEFINER='root'@'localhost' PROCEDURE PROC_AltITENS (
+CREATE DEFINER='root'@'localhost' PROCEDURE PROC_AltITEM (
     IN V_A04_codigo INT,
     IN V_A02_codigo INT,
     IN V_A03_codigo INT,

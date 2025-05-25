@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Pck_View;
 
 import Pck_Control.ClienteControl;
-import Pck_DAO.ClienteDAO;
 import Pck_Model.ClienteModel;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -277,7 +272,7 @@ public class ClienteView extends javax.swing.JFrame {
                         "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
 
                 if (confirm == JOptionPane.YES_OPTION) {
-                    control.removerCliente(cpf);
+                    control.apagarCliente(cpf);
                     JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!");
                 }
 
@@ -406,8 +401,8 @@ public class ClienteView extends javax.swing.JFrame {
     private void carregarTabelaClientes() {
 
         try {
-            ClienteDAO clienteDAO = new ClienteDAO();
-            List<ClienteModel> listaClientes = clienteDAO.listarClientes(); // método que você deve implementar
+            ClienteControl clienteControl = new ClienteControl();
+            List<ClienteModel> listaClientes = clienteControl.listarClientes(); // método que você deve implementar
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.addColumn("CPF");

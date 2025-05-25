@@ -1,25 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Pck_Model;
 
-import java.time.LocalDateTime;
-
-/*REVISAR NO FUTURO*/
 public class ItemModel {
 
-    private long A04_codigo;
+    private int A04_codigo;
     private int A02_codigo;
     private int A03_codigo;
+    private int A04_item;
     private double A04_valoritem;
     private int A04_quantidade;
 
-    public long getA04_codigo() {
+    public int getA04_codigo() {
         return A04_codigo;
     }
 
-    public void setA04_codigo(long a04_codigo) {
+    public void setA04_codigo(int a04_codigo) {
         A04_codigo = a04_codigo;
     }
 
@@ -37,6 +31,14 @@ public class ItemModel {
 
     public void setA03_codigo(int a03_codigo) {
         A03_codigo = a03_codigo;
+    }
+
+    public int getA04_item() {
+        return A04_item;
+    }
+
+    public void setA04_item(int a04_item) {
+        A04_item = a04_item;
     }
 
     public double getA04_valoritem() {

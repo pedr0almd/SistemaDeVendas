@@ -6,23 +6,24 @@ import java.sql.SQLException;
 
 public class ItemControl {
 
-public void inserirItem( int iCodigo_03, int iCodigo_02, int iQuantidade, double dValorItem) {
-    ItemModel objClienteModel = new ItemModel(); // Aqui você pode lançar RuntimeException, ou usar JOptionPane para avisar, dependendo da camada de UI
-    objClienteModel.setA03_codigo(iCodigo_03);
-    objClienteModel.setA02_codigo(iCodigo_02);
-    objClienteModel.setA04_quantidade(iQuantidade);
-    objClienteModel.setA04_valoritem(dValorItem);
-    ItemPersistencia persistencia = new ItemPersistencia();
-    persistencia.inserirItem(objClienteModel);
-}
-
-
-    public void removerItem(int iCodigo_04) {
-        ItemModel objClienteModel = new ItemModel();
-        objClienteModel.setA04_codigo(iCodigo_04);
+    public void inserirItem(int iCodigo_02, int iCodigo_03, int iItem, int iQuantidade, double dValorItem) throws SQLException {
+        ItemModel objItemModel = new ItemModel();
+        objItemModel.setA03_codigo(iCodigo_02);
+        objItemModel.setA02_codigo(iCodigo_03);
+        objItemModel.setA04_item(iItem);
+        objItemModel.setA04_quantidade(iQuantidade);
+        objItemModel.setA04_valoritem(dValorItem);
 
         ItemPersistencia persistencia = new ItemPersistencia();
-        persistencia.removerItem(objClienteModel);
+        persistencia.inserirItem(objItemModel); 
     }
-    
+
+    public void removerItem(int iCodigo_04) throws SQLException {
+        ItemModel objItemModel = new ItemModel();
+        objItemModel.setA04_codigo(iCodigo_04);
+
+        ItemPersistencia persistencia = new ItemPersistencia();
+        persistencia.apagarItem(objItemModel);
+    }
+
 }

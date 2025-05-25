@@ -1,17 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Pck_View;
 
 import Pck_Control.ProdutoControl;
-import Pck_DAO.ProdutoDAO;
 import Pck_Model.ProdutoModel;
+import Pck_Persistencia.ProdutoPersistencia;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -261,8 +259,8 @@ public class ProdutoView extends javax.swing.JFrame {
             try {
                 int codigo = Integer.parseInt(input.trim());
 
-                ProdutoDAO dao = new ProdutoDAO();
-                ProdutoModel produto = dao.buscarProdutoPorCodigo(codigo);
+                ProdutoControl control = new ProdutoControl();
+                ProdutoModel produto = control.buscarProdutoPorCodigo(codigo);
 
                 if (produto != null) {
                     int confirm = JOptionPane.showConfirmDialog(this,
@@ -270,7 +268,7 @@ public class ProdutoView extends javax.swing.JFrame {
                             "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
 
                     if (confirm == JOptionPane.YES_OPTION) {
-                        dao.deletarProduto(codigo); // método correto
+                        control.apagarProduto(codigo);
                         JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!");
                     }
                 } else {
@@ -313,13 +311,13 @@ public class ProdutoView extends javax.swing.JFrame {
             int newEstoque = Integer.parseInt(newEstoqueStr);
 
             ProdutoControl produtoControl = new ProdutoControl();
-            produtoControl.atualizarProduto(codigo, newDescricao, newValorUnitario, newEstoque);
+            produtoControl.atualizarProduto(newDescricao, newValorUnitario, newEstoque);
             JOptionPane.showMessageDialog(this, "Produto alterado com sucesso!");
             carregarTabelaProdutos();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Por favor, insira valores válidos.", "Erro", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao alterar produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
@@ -376,8 +374,8 @@ public class ProdutoView extends javax.swing.JFrame {
 
     private void carregarTabelaProdutos() {
         try {
-            ProdutoDAO produtoDAO = new ProdutoDAO();
-            List<ProdutoModel> listaProdutos = produtoDAO.listarProdutos(); // método que você deve implementar
+            ProdutoPersistencia produtoPersistencia = new ProdutoPersistencia();
+            List<ProdutoModel> listaProdutos = produtoPersistencia.listarProdutos(); 
 
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.addColumn("Código");

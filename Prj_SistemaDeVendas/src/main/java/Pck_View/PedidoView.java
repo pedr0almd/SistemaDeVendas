@@ -4,52 +4,32 @@ import Pck_Control.ClienteControl;
 import Pck_Control.ItemControl;
 import Pck_Control.PedidoControl;
 import Pck_Control.ProdutoControl;
-import Pck_DAO.ConexaoMySQL;
-import Pck_DAO.PedidoDAO;
-import Pck_DAO.ProdutoDAO;
-import Pck_Model.PedidoModel;
 import Pck_Model.ProdutoModel;
+import Pck_Persistencia.ProdutoPersistencia;
+import Pck_Utils.PedidoUtils;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.awt.Frame;
 import java.sql.SQLException;
-import javax.swing.AbstractAction;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.KeyStroke;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.JTableHeader;
+import javax.swing.table.DefaultTableModel;
 
 public class PedidoView extends javax.swing.JFrame {
 
     private int codigoPedido = -1; // -1 indica que ainda não foi gerado
+    private int codigoCliente = -1; // -1 significa que nenhum cliente foi associado ainda
+    private int contadorItem = 1; // começa do 1 para o primeiro item
 
     public PedidoView() {
         initComponents();
-
-        //Atalhos do teclado
-
-        /*Cancelar(ESC)*/
-        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
-                .put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "cancelar");
-
-        getRootPane().getActionMap().put("cancelar", new AbstractAction() {
-            public void actionPerformed(ActionEvent e) {
-                btnCancelar.doClick();
-            }
-        });
 
     }
 
@@ -57,19 +37,12 @@ public class PedidoView extends javax.swing.JFrame {
         this.codigoPedido = codigoPedido;
         initComponents();
 
-        // Se quiser, pode chamar um método para carregar dados do pedido com esse código
-    }
-
-    private double parseValor(String valorFormatado) {
-        valorFormatado = valorFormatado.replace("R$ ", "").replace(".", "").replace(",", ".");
-        return Double.parseDouble(valorFormatado);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         pnlBackground = new javax.swing.JPanel();
         tfPedido = new javax.swing.JLabel();
         lblCodigoProduto = new javax.swing.JLabel();
@@ -97,9 +70,7 @@ public class PedidoView extends javax.swing.JFrame {
         lblCodigoTabela = new javax.swing.JLabel();
         btnInserirCliente = new javax.swing.JButton();
         tfPedido1 = new javax.swing.JLabel();
-
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+        btnConcluirVenda2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -307,14 +278,24 @@ public class PedidoView extends javax.swing.JFrame {
         tfPedido1.setText("Pedido");
         tfPedido1.setToolTipText("");
 
+        btnConcluirVenda2.setBackground(new java.awt.Color(51, 153, 255));
+        btnConcluirVenda2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnConcluirVenda2.setForeground(new java.awt.Color(255, 255, 255));
+        btnConcluirVenda2.setText("Concluir Venda");
+        btnConcluirVenda.setBorderPainted(false);               // Remove borda
+        btnConcluirVenda.setFocusPainted(false);                // Remove destaque de foco
+        btnConcluirVenda.setContentAreaFilled(false);           // Remove preenchimento padrão
+        btnConcluirVenda.setOpaque(true);  // Necessário para aplicar o fundo
+        btnConcluirVenda2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConcluirVenda2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(tfPedido1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
@@ -369,8 +350,13 @@ public class PedidoView extends javax.swing.JFrame {
                         .addComponent(lblValorItemTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))
                     .addComponent(btnInserirCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConcluirVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConcluirVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConcluirVenda2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35))
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(tfPedido1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,10 +407,12 @@ public class PedidoView extends javax.swing.JFrame {
                         .addComponent(scrollTblPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnInserirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConcluirVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConcluirVenda2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
@@ -489,57 +477,24 @@ public class PedidoView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarValorActionPerformed
 
     private void btnInserirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirItemActionPerformed
+        if (!validarCamposProduto()) {
+            return;
+        }
 
         try {
             int codigoProduto = Integer.parseInt(tfCodigoProduto.getText());
             int quantidade = Integer.parseInt(tfQuantidade.getText());
 
-            ProdutoDAO produtoDAO = new ProdutoDAO();
-            ProdutoModel produto = produtoDAO.buscarProdutoPorCodigo(codigoProduto);
+            ProdutoModel produto = buscarProduto(codigoProduto);
 
             if (produto != null) {
-                tfProduto.setText(produto.getA03_descricao());
-
-                // Valor unitário formatado
-                String valorUnitarioFormatado = String.format("R$ %.2f", produto.getA03_valorUnitario()).replace(".", ",");
-                tfValorUnitario.setText(valorUnitarioFormatado);
-
-                // Valor total do item
-                double valorItem = produto.getA03_valorUnitario() * quantidade;
-                String valorItemFormatado = String.format("R$ %.2f", valorItem).replace(".", ",");
-                tfValorItem.setText(valorItemFormatado);
-
-                // Código único do item
-                long codigoItem = System.currentTimeMillis();
-                tfCodigoItem.setText(String.valueOf(codigoItem));
-
-                // Adiciona na tabela da interface
-                javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPedido.getModel();
-                model.addRow(new Object[]{
-                    tfCodigoItem.getText(),
-                    tfCodigoProduto.getText(),
-                    tfProduto.getText(),
-                    tfQuantidade.getText(),
-                    valorItemFormatado
-                });
-
-                // Centraliza colunas
-                DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
-                centralizado.setHorizontalAlignment(SwingConstants.CENTER);
-                for (int i = 0; i < tblPedido.getColumnCount(); i++) {
-                    tblPedido.getColumnModel().getColumn(i).setCellRenderer(centralizado);
-                }
-                tblPedido.setDefaultEditor(Object.class, null);
-
-                // Atualiza total
+                preencherCamposProduto(produto, quantidade);
+                adicionarItemNaTabela();
                 atualizarValorTotal();
-
             } else {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado.");
             }
 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Digite valores válidos para código e quantidade.");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar produto: " + e.getMessage());
         }
@@ -547,41 +502,10 @@ public class PedidoView extends javax.swing.JFrame {
 
     private void btnConcluirVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirVendaActionPerformed
         try {
-            ItemControl itemControl = new ItemControl();
-            PedidoControl pedidoControl = new PedidoControl();
-            ProdutoControl produtoControl = new ProdutoControl();
-
-            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPedido.getModel();
-            double valorTotal = 0;
-
-            // Percorre os itens da tabela e insere no banco e desconta do estoque
-            for (int i = 0; i < model.getRowCount(); i++) {
-                int codigoProduto = Integer.parseInt(model.getValueAt(i, 1).toString());
-                int quantidade = Integer.parseInt(model.getValueAt(i, 3).toString());
-                double valorItem = parseValor(model.getValueAt(i, 4).toString());
-
-                // Soma ao valor total
-                valorTotal += valorItem;
-
-                // Insere item no banco (sem o código do item)
-                itemControl.inserirItem(codigoProduto, codigoPedido, quantidade, valorItem);
-
-                // Desconta do estoque
-                produtoControl.descontarEstoque(codigoProduto, quantidade);
-            }
-
-            // Atualiza o valor total do pedido no banco
-            pedidoControl.atualizarValorTotal(codigoPedido, valorTotal);
-
-            // Finaliza o pedido
-            pedidoControl.finalizarPedido(codigoPedido);
-
-            // Mostra mensagem de sucesso
+            double valorTotal = processarItensDaTabela();
+            finalizarVenda(valorTotal, codigoCliente);
             JOptionPane.showMessageDialog(this, "Venda finalizada com sucesso!");
-
-            // Retorna ao menu principal
-            new MenuView().setVisible(true);
-            this.dispose();
+            retornarAoMenu();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao concluir venda: " + e.getMessage());
@@ -597,22 +521,15 @@ public class PedidoView extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         try {
-            Connection con = new ConexaoMySQL().getConnection(); // sua classe de conexão
-            String sql = "CALL PROC_DelPEDIDO(?)";
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, codigoPedido); // Usa o atributo já existente
-            stmt.execute();
-            stmt.close();
-            con.close();
+            PedidoControl pedidoControl = new PedidoControl();
+            pedidoControl.cancelarPedido(codigoPedido); // camada correta
 
-            JOptionPane.showMessageDialog(null, "Pedido cancelado com sucesso!");
+            JOptionPane.showMessageDialog(this, "Pedido cancelado com sucesso!");
+            retornarAoMenu();
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao cancelar o pedido: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro ao cancelar o pedido: " + ex.getMessage());
         }
-
-        this.setVisible(false);
-        new MenuView().setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void tblPedidoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblPedidoAncestorAdded
@@ -620,33 +537,39 @@ public class PedidoView extends javax.swing.JFrame {
     }//GEN-LAST:event_tblPedidoAncestorAdded
 
     private void btnInserirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirClienteActionPerformed
-        String cpf = JOptionPane.showInputDialog(this, "Informe o CPF do cliente:");
-        if (cpf == null || cpf.trim().isEmpty()) {
+        String sCpf = JOptionPane.showInputDialog(this, "Informe o CPF do cliente:");
+        if (sCpf == null || sCpf.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "CPF é obrigatório.");
             return;
         }
 
         ClienteControl clienteControl = new ClienteControl();
-        int codigoCliente = clienteControl.buscarCodigoClientePorCPF(cpf);
 
-        if (codigoCliente == -1) {
-            JOptionPane.showMessageDialog(this, "Cliente não encontrado para o CPF informado.");
-            return;
+        try {
+            int codigo = clienteControl.buscarClientePorCPF(sCpf);
+
+            if (codigo == -1) {
+                JOptionPane.showMessageDialog(this, "Cliente não encontrado para o CPF informado.");
+                return;
+            }
+
+            codigoCliente = codigo;
+
+            JOptionPane.showMessageDialog(this, "Cliente encontrado! Código: " + codigoCliente);
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoView.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-// Agora você pode usar esse codigoCliente para algo, como iniciar um pedido, etc.
-        JOptionPane.showMessageDialog(this, "Cliente encontrado! Código: " + codigoCliente);
-
-
     }//GEN-LAST:event_btnInserirClienteActionPerformed
 
     private void tfValorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValorItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfValorItemActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnConcluirVenda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirVenda2ActionPerformed
+        abrirFormaPagamento();
+
+    }//GEN-LAST:event_btnConcluirVenda2ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -686,7 +609,6 @@ public class PedidoView extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PedidoView().setVisible(true);
@@ -694,32 +616,126 @@ public class PedidoView extends javax.swing.JFrame {
         });
     }
 
-    private void atualizarValorTotal() {
-        double soma = 0.0;
-
-        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPedido.getModel();
-
-        for (int i = 0; i < model.getRowCount(); i++) {
-            String valorItemStr = model.getValueAt(i, 4).toString();
-            valorItemStr = valorItemStr.replace("R$", "").replace(",", ".").trim();
-            try {
-                soma += Double.parseDouble(valorItemStr);
-            } catch (NumberFormatException ex) {
-                System.out.println("Erro ao converter valor: " + valorItemStr);
-            }
-        }
-
-        btnConcluirVenda.setText("Concluir Venda (R$ " + String.format("%.2f", soma).replace(".", ",") + ")");
+    //Métodos auxiliares da interface
+    private double formatarValor(String valorFormatado) {
+        valorFormatado = valorFormatado.replace("R$ ", "").replace(".", "").replace(",", ".");
+        return Double.parseDouble(valorFormatado);
     }
 
+    private boolean validarCamposProduto() {
+        try {
+            Integer.parseInt(tfCodigoProduto.getText());
+            Integer.parseInt(tfQuantidade.getText());
+            return true;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Digite valores válidos para código e quantidade.");
+            return false;
+        }
+    }
+
+    private ProdutoModel buscarProduto(int codigoProduto) throws SQLException {
+        ProdutoPersistencia produtoPersistencia = new ProdutoPersistencia();
+        return produtoPersistencia.buscarProdutoPorCodigo(codigoProduto);
+    }
+
+    //Registrar último item
+    private void preencherCamposProduto(ProdutoModel produto, int quantidade) {
+        tfProduto.setText(produto.getA03_descricao());
+        String valorUnitario = String.format("R$ %.2f", produto.getA03_valorUnitario()).replace(".", ",");
+        tfValorUnitario.setText(valorUnitario);
+
+        double valorItem = produto.getA03_valorUnitario() * quantidade;
+        String valorTotal = String.format("R$ %.2f", valorItem).replace(".", ",");
+        tfValorItem.setText(valorTotal);
+
+        tfCodigoItem.setText(String.valueOf(contadorItem)); // gera item sequencial
+    }
+
+    //Tabela de itens do pedido
+    private void adicionarItemNaTabela() {
+        DefaultTableModel model = (DefaultTableModel) tblPedido.getModel();
+
+        model.addRow(new Object[]{
+            tfCodigoItem.getText(),
+            tfCodigoProduto.getText(),
+            tfProduto.getText(),
+            tfQuantidade.getText(),
+            tfValorItem.getText()
+        });
+
+        contadorItem++; // incrementa para o próximo item
+        centralizarTabela();
+    }
+
+    private void centralizarTabela() {
+        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < tblPedido.getColumnCount(); i++) {
+            tblPedido.getColumnModel().getColumn(i).setCellRenderer(centralizado);
+
+        }
+        tblPedido.setDefaultEditor(Object.class,
+                null);
+    }
+
+    //Atualizar no botão de "concluir venda"
+    private void atualizarValorTotal() {
+        double total = PedidoUtils.calcularValorTotal(tblPedido);
+        btnConcluirVenda.setText("Concluir Venda (R$ " + String.format("%.2f", total).replace(".", ",") + ")");
+    }
+
+    //Selecionar forma de pagamento
+    private void abrirFormaPagamento() {
+        JTable tabelaPedido = tblPedido;
+        dlgFormaPagamento dlg = new dlgFormaPagamento((Frame) this, true, tabelaPedido); // passa o valor total
+        dlg.setLocationRelativeTo(this); // centraliza o diálogo
+        dlg.setVisible(true); // exibe o diálogo
+    }
+
+    //Inserir o pedido no banco dedos
+    private double processarItensDaTabela() throws SQLException {
+        ItemControl itemControl = new ItemControl();
+        ProdutoControl produtoControl = new ProdutoControl();
+        DefaultTableModel model = (DefaultTableModel) tblPedido.getModel();
+
+        double valorTotal = 0;
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            int codigoItem = Integer.parseInt(model.getValueAt(i, 0).toString());
+            int codigoProduto = Integer.parseInt(model.getValueAt(i, 1).toString());
+            int quantidade = Integer.parseInt(model.getValueAt(i, 3).toString());
+            double valorItem = formatarValor(model.getValueAt(i, 4).toString());
+
+            valorTotal += valorItem;
+
+            itemControl.inserirItem(codigoPedido, codigoProduto, codigoItem, quantidade, valorItem);
+
+            produtoControl.descontarEstoque(codigoProduto, quantidade);
+        }
+
+        return valorTotal;
+    }
+
+    private void finalizarVenda(double valorTotal, int codigoCliente) throws SQLException {
+
+        PedidoControl pedidoControl = new PedidoControl();
+        pedidoControl.atualizarPedido(codigoCliente, codigoPedido, valorTotal);
+        pedidoControl.finalizarPedido(codigoPedido);
+    }
+
+    //Redirecionamentos
+    private void retornarAoMenu() {
+        new MenuView().setVisible(true);
+        this.dispose();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JButton btnConcluirVenda;
+    private javax.swing.JButton btnConcluirVenda2;
     private javax.swing.JButton btnConsultarValor;
     private javax.swing.JButton btnInserirCliente;
     private javax.swing.JButton btnInserirItem;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel lblCodigoItem;
     private javax.swing.JLabel lblCodigoProduto;
     private javax.swing.JLabel lblCodigoTabela;

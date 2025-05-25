@@ -3,9 +3,11 @@ package Pck_Control;
 import Pck_Model.ClienteModel;
 import Pck_Persistencia.ClientePersistencia;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ClienteControl {
 
+    //01- Inserir cliente
     public void inserirCliente(String sNome, String sEndereco, String sTelefone, String sCpf, double dCredito) throws SQLException {
         ClienteModel objClienteModel = new ClienteModel();
         objClienteModel.setA01_nome(sNome);
@@ -18,6 +20,13 @@ public class ClienteControl {
         persistencia.inserirCliente(objClienteModel);
     }
 
+    //02- Listar clientes
+    public List<ClienteModel> listarClientes() throws SQLException {
+        ClientePersistencia persistencia = new ClientePersistencia();
+        return persistencia.listarClientes();
+    }
+
+    //03- Atualizar cliente
     public void atualizarCliente(String sCpf, String sNome, String sEndereco, String sTelefone, double dCredito) throws SQLException {
         ClienteModel objClienteModel = new ClienteModel();
         objClienteModel.setA01_cpf(sCpf);
@@ -30,12 +39,18 @@ public class ClienteControl {
         persistencia.atualizarCliente(objClienteModel);
     }
 
-    public void removerCliente(String sCpf) throws SQLException {
+    //04- Apagar Cliente
+    public void apagarCliente(String sCpf) throws SQLException {
         ClientePersistencia persistencia = new ClientePersistencia();
-        persistencia.removerCliente(sCpf);
+        persistencia.apagarCliente(sCpf);
     }
 
-    public int buscarCodigoClientePorCPF(String cpf) {
-        return ClientePersistencia.buscarCodigoClientePorCPF(cpf);
+    public int buscarClientePorCPF(String sCpf) throws SQLException {
+        ClienteModel objClienteModel = new ClienteModel();
+        objClienteModel.setA01_cpf(sCpf);
+
+        ClientePersistencia persistencia = new ClientePersistencia();
+        persistencia.buscarClientePorCPF(objClienteModel);
+        return objClienteModel.getA01_codigo();
     }
 }

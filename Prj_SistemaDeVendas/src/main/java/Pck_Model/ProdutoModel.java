@@ -1,12 +1,16 @@
 package Pck_Model;
 
+import Pck_Persistencia.ProdutoPersistencia;
+import java.sql.SQLException;
+
 public class ProdutoModel {
 
     private int a03_codigo;
     private String a03_descricao;
     private double a03_valorUnitario;
-    private int a03_estoque; // Agora como inteiro
+    private int a03_estoque;
 
+    //Getters e setters
     public int getA03_codigo() {
         return a03_codigo;
     }
@@ -38,5 +42,24 @@ public class ProdutoModel {
     public void setA03_estoque(int a03_estoque) {
         this.a03_estoque = a03_estoque;
     }
-}
 
+    //Lógica do negócio
+    public void descontarEstoque(int quantidadeVendida) throws Exception {
+        try (ProdutoPersistencia persistencia = new ProdutoPersistencia()) {
+            boolean sucesso = persistencia.descontarEstoque(this.a03_codigo, quantidadeVendida);
+
+            if (!sucesso) {
+                throw new Exception("Estoque insuficiente para o produto: " + this.a03_descricao);
+            }
+
+            // Se quiser atualizar o objeto com o novo estoque
+            ProdutoModel atualizado = persistencia.buscarProdutoPorCodigo(this.a03_codigo);
+            if (atualizado != null) {
+                this.a03_estoque = atualizado.getA03_estoque();
+            }
+
+        } catch (SQLException e) {
+            throw new Exception("Erro ao realizar venda: " + e.getMessage());
+        }
+    }
+}
